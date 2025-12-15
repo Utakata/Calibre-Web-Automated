@@ -118,7 +118,7 @@ web = Blueprint('web', __name__)
 log = logger.create()
 
 
-# ################################### Login logic and rights management ###############################################
+# ################################### ログインロジックと権限管理 ###############################################
 
 
 def download_required(f):
@@ -141,7 +141,7 @@ def viewer_required(f):
     return inner
 
 
-# ################################### data provider functions #########################################################
+# ################################### データプロバイダー関数 #########################################################
 
 
 @web.route("/ajax/emailstat")
@@ -185,7 +185,7 @@ def toggle_read(book_id):
 @user_login_required
 def toggle_archived(book_id):
     change_archived_books(book_id, message="Book {} archive bit toggled".format(book_id))
-    # Remove book from syncd books list to force resync (?)
+    # 同期された本リストから本を削除して再同期を強制する（？）
     remove_synced_book(book_id)
     return ""
 
@@ -253,7 +253,7 @@ def get_comic_book(book_id, book_format, page):
 '''
 
 
-# ################################### Typeahead ##################################################################
+# ################################### 先読み入力 (Typeahead) ##################################################################
 
 
 @web.route("/get_authors_json", methods=['GET'])
@@ -850,7 +850,7 @@ def render_archived_books(page, sort_param):
     return render_title_template('index.html', random=random, entries=entries, pagination=pagination,
                                  title=name, page=page_name, order=sort_param[1])
 
-# ################################### Health Check ##################################################################
+# ################################### ヘルスチェック ##################################################################
 
 @web.route("/health")
 def health_check():
@@ -882,7 +882,7 @@ def health_check():
         "version": f"CWA/{constants.INSTALLED_VERSION}",
     }), 200 if db_up else 503
 
-# ################################### View Books list ##################################################################
+# ################################### 書籍リストの表示 ##################################################################
 
 @web.route("/", defaults={'page': 1})
 @web.route('/page/<int:page>')
@@ -1250,7 +1250,7 @@ def category_list():
 
 
 
-# ################################### Download/Send ##################################################################
+# ################################### ダウンロード/送信 ##################################################################
 
 
 @web.route("/cover/<int:book_id>")
@@ -1402,7 +1402,7 @@ def send_to_selected_ereaders(book_id):
     return Response(json.dumps(response), mimetype='application/json')
 
 
-# ################################### Login Logout ##################################################################
+# ################################### ログイン ログアウト ##################################################################
 
 @web.route('/register', methods=['POST'])
 @limiter.limit("40/day", key_func=get_remote_address)
@@ -1699,7 +1699,7 @@ def logout():
         return redirect(url_for('web.login'))
 
 
-# ################################### Users own configuration #########################################################
+# ################################### ユーザー独自設定 #########################################################
 def change_profile(kobo_support, hardcover_support, local_oauth_check, oauth_status, translations, languages):
     to_save = request.form.to_dict()
     current_user.random_books = 0
@@ -1810,7 +1810,7 @@ def profile():
                                  oauth_status=oauth_status)
 
 
-# ###################################Show single book ##################################################################
+# ################################### 単一の書籍を表示 ##################################################################
 
 
 @web.route("/read/<int:book_id>/<book_format>")

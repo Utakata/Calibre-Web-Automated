@@ -68,7 +68,7 @@ except (ImportError, RuntimeError) as e:
     MissingDelegateError = BaseException
 
 
-# Convert existing book entry to new format
+# 既存の書籍エントリを新しい形式に変換する
 def convert_book_format(book_id, calibre_path, old_book_format, new_book_format, user_id, ereader_mail=None, subject=None):
     book = calibre_db.get_book(book_id)
     data = calibre_db.get_book_format(book.id, old_book_format)
@@ -87,7 +87,7 @@ def convert_book_format(book_id, calibre_path, old_book_format, new_book_format,
             error_message = _("%(format)s not found: %(fn)s",
                               format=old_book_format, fn=data.name + "." + old_book_format.lower())
             return error_message
-    # read settings and append converter task to queue
+    # 設定を読み込み、コンバータタスクをキューに追加
     if ereader_mail:
         settings = config.get_mail_settings()
         if not subject or not subject.strip():
@@ -107,7 +107,7 @@ def convert_book_format(book_id, calibre_path, old_book_format, new_book_format,
     return None
 
 
-# Texts are not lazy translated as they are supposed to get send out as is
+# テキストはそのまま送信されることになっているため、遅延翻訳されません
 def send_test_mail(ereader_mail, user_name):
     for email in ereader_mail.split(','):
         email = strip_whitespaces(email)
@@ -117,7 +117,7 @@ def send_test_mail(ereader_mail, user_name):
     return
 
 
-# Send registration email or password reset email, depending on parameter resend (False means welcome email)
+# 登録メールまたはパスワードリセットメールを送信します。resendパラメータに依存します（Falseはウェルカムメールを意味します）
 def send_registration_mail(e_mail, user_name, default_password, resend=False):
     txt = "Hi %s!\r\n" % user_name
     if not resend:
@@ -159,7 +159,7 @@ def check_send_to_ereader_with_converter(formats):
 
 def check_send_to_ereader(entry):
     """
-        returns all available book formats for sending to eReader
+        eReaderへの送信に使用できるすべての書籍フォーマットを返します
     """
     formats = list()
     book_formats = list()
@@ -187,8 +187,8 @@ def check_send_to_ereader(entry):
         return None
 
 
-# Check if a reader is existing for any of the book formats, if not, return empty list, otherwise return
-# list with supported formats
+# いずれかの書籍フォーマットに対応するリーダーが存在するかどうかを確認し、存在しない場合は空のリストを返し、
+# 存在する場合はサポートされているフォーマットのリストを返します
 def check_read_formats(entry):
     extensions_reader = {'TXT', 'PDF', 'EPUB', 'CBZ', 'CBT', 'CBR', 'DJVU', 'DJV'}
     book_formats = list()
@@ -199,19 +199,19 @@ def check_read_formats(entry):
     return book_formats
 
 
-# Files are processed in the following order/priority:
-# 1: If epub file is existing, it's directly send to eReader email,
-# 2: If mobi file is existing, it's converted and send to eReader email,
-# 3: If Pdf file is existing, it's directly send to eReader email
+# ファイルは以下の順序/優先度で処理されます:
+# 1: epubファイルが存在する場合、eReaderメールに直接送信されます
+# 2: mobiファイルが存在する場合、変換されてeReaderメールに送信されます
+# 3: Pdfファイルが存在する場合、eReaderメールに直接送信されます
 def send_mail(book_id, book_format, convert, ereader_mail, calibrepath, user_id, subject=None):
-    """Send email with attachments"""
+    """添付ファイル付きメールを送信"""
     book = calibre_db.get_book(book_id)
 
     if convert == 1:
-        # returns None if success, otherwise errormessage
+        # 成功した場合はNoneを返し、そうでない場合はエラーメッセージを返します
         return convert_book_format(book_id, calibrepath, 'mobi', book_format.lower(), user_id, ereader_mail, subject)
     if convert == 2:
-        # returns None if success, otherwise errormessage
+        # 成功した場合はNoneを返し、そうでない場合はエラーメッセージを返します
         return convert_book_format(book_id, calibrepath, 'azw3', book_format.lower(), user_id, ereader_mail, subject)
 
     if not subject or not subject.strip():
@@ -233,8 +233,8 @@ def send_mail(book_id, book_format, convert, ereader_mail, calibrepath, user_id,
 
 def get_valid_filename(value, replace_whitespace=True, chars=128):
     """
-    Return a sanitized filename (max length chars) mirroring shared sanitizer.
-    Uses cps.utils.filename_sanitizer if available; falls back to legacy logic if import fails.
+    サニタイズされたファイル名（最大長chars）を返します。共有サニタイザーを反映しています。
+    利用可能な場合は cps.utils.filename_sanitizer を使用し、インポートに失敗した場合はレガシーロジックにフォールバックします。
     """
     get_valid_filename_shared = None
     try:
@@ -378,9 +378,9 @@ def edit_book_read_status(book_id, read_status=None):
     return ""
 
 
-# Deletes a book from the local filestorage, returns True if deleting is successful, otherwise false
+# ローカルファイルストレージから本を削除します。削除が成功した場合はTrue、そうでない場合はFalseを返します
 def delete_book_file(book, calibrepath, book_format=None):
-    # check that path is 2 elements deep, check that target path has no sub folders
+    # パスの深さが2であることを確認し、ターゲットパスにサブフォルダがないことを確認します
     if book.path.count('/') == 1:
         path = os.path.join(calibrepath, book.path)
         if book_format:
@@ -440,8 +440,8 @@ def rename_all_files_on_change(one_book, new_path, old_path, all_new_name, gdriv
 
 
 def rename_author_path(first_author, old_author_dir, renamed_author, calibre_path="", gdrive=False):
-    # Create new_author_dir from parameter or from database
-    # Create new title_dir from database and add id
+    # パラメータまたはデータベースから new_author_dir を作成します
+    # データベースから新しい title_dir を作成し、IDを追加します
     new_authordir = get_valid_filename(first_author, chars=96)
     new_author_rename_dir = get_valid_filename(renamed_author, chars=96)
     if gdrive:
@@ -464,16 +464,16 @@ def rename_author_path(first_author, old_author_dir, renamed_author, calibre_pat
                              src=old_author_path, dest=new_author_path, error=str(ex)))
     return new_authordir
 
-# Moves files in file storage during author/title rename, or from temp dir to file storage
+# 著者名/タイトル名の変更時、または一時ディレクトリからファイルストレージへの移動時に、ファイルストレージ内のファイルを移動します
 def update_dir_structure_file(book_id, calibre_path, original_filepath, new_author, db_filename):
-    # get book database entry from id, if original path overwrite source with original_filepath
+    # IDから書籍データベースエントリを取得し、元のパスがある場合はソースをoriginal_filepathで上書きします
     local_book = calibre_db.get_book(book_id)
     if original_filepath:
         path = original_filepath
     else:
         path = os.path.join(calibre_path, local_book.path)
 
-    # Create (current) author_dir and title_dir from database
+    # データベースから（現在の）author_dir と title_dir を作成します
     author_dir = local_book.path.split('/')[0]
     title_dir = local_book.path.split('/')[1]
 
@@ -494,7 +494,7 @@ def update_dir_structure_file(book_id, calibre_path, original_filepath, new_auth
         new_path = os.path.join(calibre_path, new_author_dir, new_title_dir).replace('\\', '/')
         all_new_name = get_valid_filename(local_book.title, chars=42) + ' - ' \
                        + get_valid_filename(new_author, chars=42)
-        # Book folder already moved, only files need to be renamed
+        # 書籍フォルダは既に移動済み、ファイルのみリネームが必要
         rename_all_files_on_change(local_book, new_path, new_path, all_new_name)
 
         if error:
@@ -560,14 +560,14 @@ def move_files_on_change(calibre_path, new_author_dir, new_titledir, localbook, 
                 shutil.move(original_filepath, os.path.join(new_path, db_filename), copy_function=shutil.copy)
             log.debug("Moving title: %s to %s", original_filepath, new_path)
         else:
-            # Check new path is not valid path
+            # 新しいパスが有効なパスでないことを確認
             if not os.path.exists(new_path):
-                # move original path to new path
+                # 元のパスを新しいパスに移動
                 log.debug("Moving title: %s to %s", path, new_path)
                 shutil.move(path, new_path)
-            else:  # path is valid copy only files to new location (merge)
+            else:  # パスは有効、ファイルのみを新しい場所にコピー（マージ）
                 log.info("Moving title: %s into existing: %s", path, new_path)
-                # Take all files and subfolder from old path (strange command)
+                # 古いパスからすべてのファイルとサブフォルダを取得（奇妙なコマンド）
                 for dir_name, __, file_list in os.walk(path):
                     for file in file_list:
                         shutil.move(os.path.join(dir_name, file), os.path.join(new_path + dir_name[len(path):], file))
@@ -576,7 +576,7 @@ def move_files_on_change(calibre_path, new_author_dir, new_titledir, localbook, 
                     shutil.rmtree(os.path.split(path)[0])
                 except (IOError, OSError) as ex:
                     log.error("Deleting authorpath for book %s failed: %s", localbook.id, ex)
-        # change location in database to new author/title path
+        # データベース内の場所を新しい著者/タイトルパスに変更
         localbook.path = os.path.join(new_author_dir, new_titledir).replace('\\', '/')
     except OSError as ex:
         log.error_or_exception("Rename title from {} to {} failed with error: {}".format(path, new_path, ex))
@@ -592,7 +592,7 @@ def rename_files_on_change(first_author,
                            path="",
                            calibre_path="",
                            gdrive=False):
-    # Rename all files from old names to new names
+    # すべてのファイルを古い名前から新しい名前に変更します
     #try:
         #clean_author_database(renamed_author, calibre_path, gdrive=gdrive)
         #if first_author and first_author not in renamed_author:
@@ -1246,10 +1246,10 @@ def tags_filters():
     return and_(pos_content_tags_filter, ~neg_content_tags_filter)
 
 
-# checks if domain is in database (including wildcards)
-# example SELECT * FROM @TABLE WHERE 'abcdefg' LIKE Name;
-# from https://code.luasoftware.com/tutorials/flask/execute-raw-sql-in-flask-sqlalchemy/
-# in all calls the email address is checked for validity
+# ドメインがデータベースにあるかどうかを確認します（ワイルドカードを含む）
+# 例 SELECT * FROM @TABLE WHERE 'abcdefg' LIKE Name;
+# https://code.luasoftware.com/tutorials/flask/execute-raw-sql-in-flask-sqlalchemy/ より
+# すべての呼び出しでメールアドレスの有効性がチェックされます
 def check_valid_domain(domain_text):
     sql = "SELECT * FROM registration WHERE (:domain LIKE domain and allow = 1);"
     if not len(ub.session.query(ub.Registration).from_statement(text(sql)).params(domain=domain_text).all()):
@@ -1260,10 +1260,10 @@ def check_valid_domain(domain_text):
 
 def get_download_link(book_id, book_format, client):
     book_format = book_format.split(".")[0]
-    # Try filtered view first to respect user restrictions
+    # ユーザー制限を尊重するために、まずフィルタリングされたビューを試します
     book = calibre_db.get_filtered_book(book_id, allow_show_archived=True)
 
-    # If not found but user is admin, fall back to unfiltered direct lookup
+    # 見つからない場合でも、ユーザーが管理者の場合は、フィルタリングされていない直接検索にフォールバックします
     if not book and getattr(current_user, 'role_admin', lambda: False)():
         log.debug(f"Admin fallback: get_book used for download of id={book_id}")
         book = calibre_db.get_book(book_id)
@@ -1277,7 +1277,7 @@ def get_download_link(book_id, book_format, client):
         log.error("Requested format %s for book id %s not found in database", book_format.upper(), book_id)
         abort(404)
 
-    # collect downloaded books only for registered user and not for anonymous user
+    # 登録ユーザーに対してのみダウンロードされた本を収集し、匿名ユーザーに対しては収集しません
     if current_user.is_authenticated:
         ub.update_download(book_id, int(current_user.id))
     file_name = book.title
@@ -1292,12 +1292,12 @@ def get_download_link(book_id, book_format, client):
 
 
 def clear_cover_thumbnail_cache(book_id):
-    # Always allow clearing thumbnail cache
+    # 常にサムネイルキャッシュのクリアを許可
     WorkerThread.add(None, TaskClearCoverThumbnailCache(book_id), hidden=True)
 
 
 def replace_cover_thumbnail_cache(book_id):
-    # Always allow replacing thumbnail cache
+    # 常にサムネイルキャッシュの置換を許可
     WorkerThread.add(None, TaskClearCoverThumbnailCache(book_id), hidden=True)
     WorkerThread.add(None, TaskGenerateCoverThumbnails(book_id), hidden=True)
 
@@ -1307,15 +1307,15 @@ def delete_thumbnail_cache():
 
 
 def add_book_to_thumbnail_cache(book_id):
-    # Always generate thumbnails for new books
+    # 新しい本に対して常にサムネイルを生成
     WorkerThread.add(None, TaskGenerateCoverThumbnails(book_id), hidden=True)
 
 
 def update_thumbnail_cache():
-    # Always allow manual thumbnail cache updates
+    # 手動のサムネイルキャッシュ更新を常に許可
     task = TaskGenerateCoverThumbnails()
     WorkerThread.add(None, task)
-    # Return task ID for tracking
+    # 追跡用のタスクIDを返す
     return task.id
 
 

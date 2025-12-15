@@ -54,7 +54,7 @@ def main():
     from . import web_server
     init_errorhandler()
 
-    # CWA Blueprints
+    # CWA ブループリント
     app.register_blueprint(switch_theme)
     app.register_blueprint(library_refresh)
     app.register_blueprint(convert_library)
@@ -66,7 +66,7 @@ def main():
     app.register_blueprint(profile_pictures)
     app.register_blueprint(cwa_internal)
 
-    # Stock CW
+    # 通常の CW
     app.register_blueprint(search)
     app.register_blueprint(tasks)
     app.register_blueprint(web)
