@@ -1373,7 +1373,7 @@ def set_profile_picture():
 
         except Exception as e:
             # Error handling in case of an issue
-            flash(f"Error: {str(e)}", category="error")
+            flash(_("Error: %(error)s") % {'error': str(e)}, category="error")
             log.error(f"Exception while updating profile picture JSON: {str(e)}")
 
         return redirect(url_for('profile_pictures.set_profile_picture'))

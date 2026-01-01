@@ -12,21 +12,21 @@
 
 ## _クイックアクセス_
 
-- [機能](#features) 🪄
+- [機能](#機能) 🪄
 - [リリース](https://github.com/crocodilestick/Calibre-Web-Automated/releases) 🆕
-- [ロードマップ](#features-currently-under-active-development-and-on-our-roadmap-️️) 🛣️
-- [インストール方法](#how-to-install-): 📖
-  - [クイックインストール](#quick-install-) 🚀
-  - [Docker Compose](#using-docker-compose-recommended) 🐋⭐(推奨)
-  - [通常のCalibre Webからの移行](#users-migrating-from-stock-calibre-web) 🔄
-  - [インストール後のタスク](#post-install-tasks) 🏁
-    - [デフォルトのログイン情報 🔑](#default-admin-login)
-- [使い方](#usage-) 🔧
-  - [ライブラリへの本の追加](#adding-books-to-your-library)
-  - [KOReader 同期 (KOSync)](#koreader-syncing-kosync-) 📖⚡
-  - [OAuth 認証設定](#enhanced-oauth-20oidc-authentication-) 🔐
-- [開発者向け](#for-developers---building-custom-docker-image) 🚀
-- [今後の開発](#further-development-️) 🏗️
+- [ロードマップ](#現在開発中でロードマップにある機能-️️) 🛣️
+- [インストール方法](#インストール方法-): 📖
+  - [クイックインストール](#クイックインストール-) 🚀
+  - [Docker-Compose](#docker-composeの使用-推奨) 🐋⭐(推奨)
+  - [通常のCalibre Webからの移行](#通常のcalibre-webからの移行ユーザー) 🔄
+  - [インストール後のタスク](#インストール後のタスク) 🏁
+    - [デフォルトのログイン情報 🔑](#デフォルトの管理者ログイン)
+- [使い方](#使い方-) 🔧
+  - [ライブラリへの本の追加](#ライブラリへの本の追加)
+  - [KOReader 同期 (KOSync)](#koreader-同期-kosync-) 📖⚡
+  - [OAuth 認証設定](#強化されたoauth-20oidc認証-) 🔐
+- [開発者向け](#ローカル開発セットアップ) 🚀
+- [今後の開発](#今後の開発-️) 🏗️
 - [サポート / コーヒーをおごる](https://ko-fi.com/crocodilestick) ☕
 
 ## なぜこのプロジェクトが存在するのか？ 🔓
@@ -110,7 +110,7 @@ ___
 - **これが重要な理由**: セッション保護はクライアントのIPアドレスに基づいてリクエストを検証します。ProxyFixが十分な数のプロキシを信頼していない場合、リクエスト間で異なるIPが見えてしまい、「セッション保護がトリガーされました」という警告が発生し、再ログインを強制される可能性があります。
 - **トラブルシューティング**: ログに頻繁にセッション保護の警告が表示される場合は、プロキシチェーンの深さを確認し、この変数を適宜調整してください。
 
-## **_機能:_**
+## **_機能_**:
 
 ### CWAは通常のCalibre-Webの全機能をサポートしています:
 | | | |
@@ -127,12 +127,12 @@ ___
 
 | | | |
 |     :---:    |     :---:      |     :---:     |
-| [自動取り込みサービス ✨](#automatic-ingest-service-) | [自動変換サービス 🔃](#automatic-conversion-service-) | [表紙・メタデータの変更を自動適用 👀📔](#automatic-enforcement-of-changes-made-to-covers--metadata-through-the-calibre-web-ui-) |
-| [一括編集・削除 🗂️](#batch-editing--deletion-️️) | [自動バックアップサービス 🔒](#automated-back-up-service-) | [新規ユーザー向け自動セットアップ 🦮](#library-auto-detect-️) |
-| [自動EPUB修復サービス 🔨](#automatic-epub-fixer-service-) | [マルチ形式変換サービス 🌌](#simple-to-use-multi-format-conversion-service-) | [ライブラリ自動検出 📚🕵️](#library-auto-detect-️) |
-| [サーバー統計追跡ページ 📍](#server-stats-tracking-page-) | [サーバー統計追跡 📊](#server-stats-tracking-page-) | [簡単ダーク/ライトモード切替 ☀️🌙](#easy-dark-light-mode-switching-️) |
-| [内部アップデート通知システム 🛎️](#internal-update-notification-system-️) | [バックアップファイルの自動圧縮 🤐](#auto-compression-of-backed-up-files-) | [追加のメタデータプロバイダー 🗃️](#additional-metadata-providers-️) |
-| [KOReader 同期 (KOSync) 📖⚡](#koreader-syncing-kosync-) | [強化されたOAuth 2.0/OIDC認証 🔐](#enhanced-oauth-20oidc-authentication-) | |
+| [自動取り込みサービス ✨](#自動取り込みサービス-) | [自動変換サービス 🔃](#自動変換サービス-) | [表紙・メタデータの変更を自動適用 👀📔](#calibre-web-uiで行った表紙メタデータの変更を自動適用-) |
+| [一括編集・削除 🗂️](#一括編集削除-️️) | [自動バックアップサービス 🔒](#自動バックアップサービス-) | [新規ユーザー向け自動セットアップ 🦮](#ライブラリ自動検出-️) |
+| [自動EPUB修復サービス 🔨](#自動epub修復サービス-) | [マルチ形式変換サービス 🌌](#使いやすいマルチ形式変換サービス-) | [ライブラリ自動検出 📚🕵️](#ライブラリ自動検出-️) |
+| [サーバー統計追跡ページ 📍](#サーバー統計追跡ページ-) | [サーバー統計追跡 📊](#サーバー統計追跡ページ-) | [簡単ダーク/ライトモード切替 ☀️🌙](#簡単ダークライトモード切替-️) |
+| [内部アップデート通知システム 🛎️](#内部アップデート通知システム-️) | [バックアップファイルの自動圧縮 🤐](#バックアップファイルの自動圧縮-) | [追加のメタデータプロバイダー 🗃️](#追加のメタデータプロバイダー-️) |
+| [KOReader 同期 (KOSync) 📖⚡](#koreader-同期-kosync-) | [強化されたOAuth 2.0/OIDC認証 🔐](#強化されたoauth-20oidc認証-) | |
 
 #### **自動取り込みサービス** ✨
 - CWAは現在、27種類の一般的な電子書籍形式の自動取り込みをサポートしています。
@@ -184,7 +184,7 @@ ___
 
 #### **使いやすいマルチ形式変換サービス** 🌌
 - このユーティリティは、変換されたすべてのファイルのオリジナルを `/config/processed_books` に保存するか、プロセスを信頼してCWAに単純にファイルを変換・置換させるか（非推奨）のオプションをユーザーに提供します。
-- 完全な使用方法は [こちら](#the-convert-library-tool) をご覧ください。
+- 完全な使用方法は [こちら](#使いやすいマルチ形式変換サービス-) をご覧ください。
 
 ![CWA Convert Library Web UI](/README_images/CWA-new-process-ui.gif)
 
@@ -213,7 +213,7 @@ ___
 #### **サーバー統計追跡ページ** 📍📊
   - CWAがバックグラウンドでどれだけあなたを支えてきたか気になったことはありませんか？CWA統計ページをチェックして、あなたの生活を少しだけ楽にするためにCWAがどれだけ働いたかを示す楽しい統計リストを見てみましょう。
 - 安心のため、そしてバグや奇妙な挙動の確認を容易にするために、すべての適用、インポート、変換、修正を記録するデータベースも存在します。
-  <!-- - 完全なドキュメントは以下の [こちら](#checking-the-cover-enforcement-logs) にあります -->
+  <!-- - 完全なドキュメントは以下の [こちら](#サーバー統計追跡ページ-) にあります -->
 
 ![CWA Server Stats Page](/README_images/cwa-server-stats-page.png)
 
@@ -286,7 +286,7 @@ curl -OL https://raw.githubusercontent.com/crocodilestick/calibre-web-automated/
 docker compose up -d
 ```
 
-これで準備完了です！ 🥳 ただし、潜在的な問題を回避し、機能を最大限に活用するために、これらの [インストール後のタスク](#post-install-tasks) を実行することをお勧めします。
+これで準備完了です！ 🥳 ただし、潜在的な問題を回避し、機能を最大限に活用するために、これらの [インストール後のタスク](#インストール後のタスク) を実行することをお勧めします。
 
 ---
 ## Docker Composeの使用 🐋⭐(推奨)
@@ -357,7 +357,7 @@ services:
 **注:** このファイルが見つからない場合、まだCalibreプラグインを設定していないことを意味します。Calibreプラグインを使用しない場合は、プラグインボリュームのバインディングをスキップできます。
 
 
-これで、Calibre-Web Automatedが稼働しているはずです！ **ただし**、潜在的な問題を回避し、機能を最大限に活用するために、これらの [インストール後のタスク](#post-install-tasks) を実行することをお勧めします。
+これで、Calibre-Web Automatedが稼働しているはずです！ **ただし**、潜在的な問題を回避し、機能を最大限に活用するために、これらの [インストール後のタスク](#インストール後のタスク) を実行することをお勧めします。
 
 # 通常のCalibre-Webからの移行ユーザー
 
@@ -422,8 +422,8 @@ $ docker compose -f docker-compose.yml.dev up -d
 ```
 
 4. **ログイン & 設定**
-   - [デフォルトの管理者ログイン](https://github.com/crocodilestick/Calibre-Web-Automated?tab=readme-ov-file#default-admin-login) でサインインします
-   - 必要に応じて [インストール後のタスク](https://github.com/crocodilestick/Calibre-Web-Automated?tab=readme-ov-file#post-install-tasks) に従ってください-
+   - [デフォルトの管理者ログイン](https://github.com/crocodilestick/Calibre-Web-Automated?tab=readme-ov-file#デフォルトの管理者ログイン) でサインインします
+   - 必要に応じて [インストール後のタスク](https://github.com/crocodilestick/Calibre-Web-Automated?tab=readme-ov-file#インストール後のタスク) に従ってください-
 
 ---
 

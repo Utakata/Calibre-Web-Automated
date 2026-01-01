@@ -582,19 +582,19 @@ msgstr "メタデータURLは有効です！ %(count)s 個のエンドポイン�
 
 #: cps/constants.py:207
 msgid "Czech"
-msgstr ""
+msgstr "チェコ語"
 
 #: cps/constants.py:208
 msgid "German"
-msgstr ""
+msgstr "ドイツ語"
 
 #: cps/constants.py:209
 msgid "Greek"
-msgstr ""
+msgstr "ギリシャ語"
 
 #: cps/constants.py:210
 msgid "Spanish"
-msgstr ""
+msgstr "スペイン語"
 
 #: cps/constants.py:211
 msgid "Finnish"
@@ -602,43 +602,43 @@ msgstr "フィンランド語"
 
 #: cps/constants.py:212
 msgid "French"
-msgstr ""
+msgstr "フランス語"
 
 #: cps/constants.py:213
 msgid "Galician"
-msgstr ""
+msgstr "ガリシア語"
 
 #: cps/constants.py:214
 msgid "Hungarian"
-msgstr ""
+msgstr "ハンガリー語"
 
 #: cps/constants.py:215
 msgid "Indonesian"
-msgstr ""
+msgstr "インドネシア語"
 
 #: cps/constants.py:216
 msgid "Italian"
-msgstr ""
+msgstr "イタリア語"
 
 #: cps/constants.py:217
 msgid "Japanese"
-msgstr ""
+msgstr "日本語"
 
 #: cps/constants.py:218
 msgid "Khmer"
-msgstr ""
+msgstr "クメール語"
 
 #: cps/constants.py:219
 msgid "Korean"
-msgstr ""
+msgstr "韓国語"
 
 #: cps/constants.py:220
 msgid "Dutch"
-msgstr ""
+msgstr "オランダ語"
 
 #: cps/constants.py:221
 msgid "Norwegian"
-msgstr ""
+msgstr "ノルウェー語"
 
 #: cps/constants.py:222
 msgid "Polish"
@@ -646,47 +646,47 @@ msgstr "ポーランド語"
 
 #: cps/constants.py:223
 msgid "Portuguese"
-msgstr ""
+msgstr "ポルトガル語"
 
 #: cps/constants.py:224
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "ポルトガル語（ブラジル）"
 
 #: cps/constants.py:225
 msgid "Russian"
-msgstr ""
+msgstr "ロシア語"
 
 #: cps/constants.py:226
 msgid "Slovak"
-msgstr ""
+msgstr "スロバキア語"
 
 #: cps/constants.py:227
 msgid "Slovenian"
-msgstr ""
+msgstr "スロベニア語"
 
 #: cps/constants.py:228
 msgid "Swedish"
-msgstr ""
+msgstr "スウェーデン語"
 
 #: cps/constants.py:229
 msgid "Turkish"
-msgstr ""
+msgstr "トルコ語"
 
 #: cps/constants.py:230
 msgid "Ukrainian"
-msgstr ""
+msgstr "ウクライナ語"
 
 #: cps/constants.py:231
 msgid "Vietnamese"
-msgstr ""
+msgstr "ベトナム語"
 
 #: cps/constants.py:232
 msgid "Chinese (Simplified, China)"
-msgstr ""
+msgstr "中国語（簡体字、中国）"
 
 #: cps/constants.py:233
 msgid "Chinese (Traditional, Taiwan)"
-msgstr ""
+msgstr "中国語（繁体字、台湾）"
 
 #: cps/converter.py:20
 msgid "not installed"
@@ -3941,18 +3941,16 @@ msgid "Log in with Magic Link"
 msgstr "マジックリンクでログイン"
 
 #: cps/templates/login.html:53
-#, fuzzy
 msgid "Log in with SSO"
-msgstr "マジックリンクでログイン"
+msgstr "SSOでログイン"
 
 #: cps/templates/logviewer.html:6
 msgid "Show Calibre-Web Log: "
 msgstr "Calibre-Webのログを表示: "
 
 #: cps/templates/logviewer.html:8
-#, fuzzy
 msgid "Calibre-Web Log: "
-msgstr "Calibre-Webのログを表示: "
+msgstr "Calibre-Web ログ: "
 
 #: cps/templates/logviewer.html:8
 msgid "Stream output, can't be displayed"
@@ -4046,9 +4044,8 @@ msgid "Ok"
 msgstr "OK"
 
 #: cps/templates/osd.xml:5
-#, fuzzy
 msgid "Calibre-Web Automated eBook Catalog"
-msgstr "Calibre-WebのeBookカタログ"
+msgstr "Calibre-Web Automated 電子書籍カタログ"
 
 #: cps/templates/read.html:7
 msgid "epub Reader"
@@ -4629,6 +4626,9 @@ msgstr "選択した本棚をKoboと同期"
 msgid "Show Read/Unread Section"
 msgstr "既読/未読セクションを表示"
 
+msgid "Error: %(error)s"
+msgstr "エラー: %(error)s"
+
 #, python-format
 #~ msgid "File %(file)s uploaded"
 #~ msgstr "ファイル %(file)s をアップロードしました"
@@ -4639,37 +4639,30 @@ msgstr "既読/未読セクションを表示"
 #~ msgid "Merge selected books"
 #~ msgstr "選択した本を統合"
 
-#, fuzzy
 #~ msgid "Clear selections"
-#~ msgstr "選択した本を削除"
+#~ msgstr "選択をクリア"
 
-#, fuzzy
 #~ msgid "Edit selected books"
-#~ msgstr "選択した本を統合"
+#~ msgstr "選択した本を編集"
 
-#, fuzzy
 #~ msgid "Archive selected books"
-#~ msgstr "選択した本を統合"
+#~ msgstr "選択した本をアーカイブ"
 
-#, fuzzy
 #~ msgid "Unarchive selected books"
-#~ msgstr "選択した本を統合"
+#~ msgstr "選択した本のアーカイブを解除"
 
-#, fuzzy
 #~ msgid "Mark selected books as read"
-#~ msgstr "選択した本を統合"
+#~ msgstr "選択した本を既読にする"
 
-#, fuzzy
 #~ msgid "Mark selected books as unread"
-#~ msgstr "選択した本を統合"
+#~ msgstr "選択した本を未読にする"
 
-#, fuzzy
 #~ msgid "Mark Book as Read or Unread"
-#~ msgstr "未読に設定"
+#~ msgstr "本を既読または未読にする"
 
-#, fuzzy, python-format
+#, python-format
 #~ msgid "%(seriesindex)s is not a valid number, skipping"
-#~ msgstr "%(seriesindex)s は有効な数字ではありません。スキップします"
+#~ msgstr "%(seriesindex)s は有効な数値ではありません。スキップします"
 
 #~ msgid "Calibre-Web configuration updated"
 #~ msgstr "Calibre-Webの設定を更新しました"
@@ -4679,13 +4672,11 @@ msgstr "既読/未読セクションを表示"
 #~ "sync with your Kobo Reader?"
 #~ msgstr "Calibre-Webの同期DBを削除して強制的にKoboリーダーと同期してもよろしいですか？"
 
-#, fuzzy
 #~ msgid "Calibre-Web Test Email"
 #~ msgstr "Calibre-Web テストメール"
 
-#, fuzzy
 #~ msgid "This Email has been sent via Calibre-Web."
-#~ msgstr "このメールはCalibre-Web経由で送信されました。"
+#~ msgstr "このメールは Calibre-Web 経由で送信されました。"
 
 #~ msgid "Get Started with Calibre-Web"
 #~ msgstr "Calibre-Webを始める"
@@ -4700,49 +4691,38 @@ msgstr "既読/未読セクションを表示"
 #~ " may take a while?"
 #~ msgstr "Calibre-Webは新しい表紙を検索してそのサムネイルを更新しますが、これにはしばらく時間がかかるかもしれません"
 
-#, fuzzy
 #~ msgid "This Email has been sent via  Autmoated."
-#~ msgstr "このメールはCalibre-Web経由で送信されました。"
+#~ msgstr "このメールは Automated 経由で送信されました。"
 
-#, fuzzy
 #~ msgid "This Email has been sent via  Automated."
-#~ msgstr "このメールはCalibre-Web経由で送信されました。"
+#~ msgstr "このメールは Automated 経由で送信されました。"
 
-#, fuzzy
 #~ msgid "Downloads per User"
-#~ msgstr "ダウンロード数"
+#~ msgstr "ユーザーごとのダウンロード数"
 
-#, fuzzy
 #~ msgid "This Email has been sent via  Autoated."
-#~ msgstr "このメールはCalibre-Web経由で送信されました。"
+#~ msgstr "このメールは Automated 経由で送信されました。"
 
-#, fuzzy
 #~ msgid "unknown error"
-#~ msgstr "接続エラー"
+#~ msgstr "不明なエラー"
 
-#, fuzzy
 #~ msgid "Could not open file {filename!r}: {message}"
-#~ msgstr "ログインできません: %(message)s"
+#~ msgstr "ファイル {filename!r} を開けませんでした: {message}"
 
-#, fuzzy
 #~ msgid "{value!r} is not a valid boolean."
-#~ msgstr "このメールは有効なドメインからのものではありません"
+#~ msgstr "{value!r} は有効なブール値ではありません。"
 
-#, fuzzy
 #~ msgid "directory"
-#~ msgstr "読む方向"
+#~ msgstr "ディレクトリ"
 
-#, fuzzy
 #~ msgid "{name} {filename!r} is not writable."
-#~ msgstr "DBへの書き込みができません"
+#~ msgstr "{name} {filename!r} は書き込み可能ではありません。"
 
-#, fuzzy
 #~ msgid "Repeat for confirmation"
-#~ msgstr "機能設定"
+#~ msgstr "確認のため再入力"
 
-#, fuzzy
 #~ msgid "Value must be an iterable."
-#~ msgstr "値はtrueかfalseのどちらかでなければなりません"
+#~ msgstr "値は反復可能でなければなりません。"
 
 #~ msgid "Users"
 #~ msgstr "ユーザー"
