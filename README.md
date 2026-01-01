@@ -1,8 +1,8 @@
-# Calibre-Web Automated _(formerly Calibre-Web Automator)_
+# Calibre-Web Automated _(旧 Calibre-Web Automator)_
 
 ![Calibre-Web Automated](README_images/CWA-banner.png "Calibre-Web Automated")
 
-## Making Calibre-Web your _dream_, all-in-one self-hosted digital library solution.
+## Calibre-Webを、あなたの「夢」のオールインワン自己ホスト型デジタルライブラリソリューションへ。
 
 ![Docker Pulls](https://img.shields.io/docker/pulls/crocodilestick/calibre-web-automated)
 ![GitHub Release](https://img.shields.io/github/v/release/crocodilestick/calibre-web-automated)
@@ -10,45 +10,45 @@
 ![OAuth 2.0 + OIDC](https://img.shields.io/badge/OAuth-2.0%20%2B%20OIDC-blue?style=flat&logo=oauth)
 
 
-## _Quick Access_
+## _クイックアクセス_
 
-- [Features](#features) 🪄
-- [Releases](https://github.com/crocodilestick/Calibre-Web-Automated/releases) 🆕
-- [Roadmap](#features-currently-under-active-development-and-on-our-roadmap-️️) 🛣️
-- [How to Install](#how-to-install-): 📖
-  - [Quick Install](#quick-install-) 🚀
-  - [Docker-Compose](#using-docker-compose-recommended) 🐋⭐(Recommended)
-  - [Users Migrating from stock Calibre Web](#users-migrating-from-stock-calibre-web) 🔄
-  - [Post-Install Tasks](#post-install-tasks) 🏁
-    - [Default Login Credentials 🔑](#default-admin-login)
-- [Usage](#usage-) 🔧
-  - [Adding Books to Your Library](#adding-books-to-your-library)
-  - [KOReader Syncing (KOSync)](#koreader-syncing-kosync-) 📖⚡
-  - [OAuth Authentication Setup](#enhanced-oauth-20oidc-authentication-) 🔐
-- [For Developers](#for-developers---building-custom-docker-image) 🚀
-- [Further Development](#further-development-️) 🏗️
-- [Support / Buy me a Coffee](https://ko-fi.com/crocodilestick) ☕
+- [機能](#機能) 🪄
+- [リリース](https://github.com/crocodilestick/Calibre-Web-Automated/releases) 🆕
+- [ロードマップ](#現在開発中でロードマップにある機能-️️) 🛣️
+- [インストール方法](#インストール方法-): 📖
+  - [クイックインストール](#クイックインストール-) 🚀
+  - [Docker-Compose](#docker-composeの使用-推奨) 🐋⭐(推奨)
+  - [通常のCalibre Webからの移行](#通常のcalibre-webからの移行ユーザー) 🔄
+  - [インストール後のタスク](#インストール後のタスク) 🏁
+    - [デフォルトのログイン情報 🔑](#デフォルトの管理者ログイン)
+- [使い方](#使い方-) 🔧
+  - [ライブラリへの本の追加](#ライブラリへの本の追加)
+  - [KOReader 同期 (KOSync)](#koreader-同期-kosync-) 📖⚡
+  - [OAuth 認証設定](#強化されたoauth-20oidc認証-) 🔐
+- [開発者向け](#ローカル開発セットアップ) 🚀
+- [今後の開発](#今後の開発-️) 🏗️
+- [サポート / コーヒーをおごる](https://ko-fi.com/crocodilestick) ☕
 
-## Why does it exist? 🔓
+## なぜこのプロジェクトが存在するのか？ 🔓
 
-Calibre, while a fantastic tool for its age, has several problems when containerised, including its reliance on a KasmVNC server instance for the UI, which is near impossible to use on mobile and is relatively resource-heavy if you're running a small, lower power server like I am.
+Calibreは、その歴史を考えると素晴らしいツールですが、コンテナ化して利用する際にはいくつかの問題を抱えています。特にUIのためにKasmVNCサーバーインスタンスに依存している点は、モバイルでの利用をほぼ不可能にし、私のような小規模で省電力なサーバーで運用するには比較的リソースを多く消費します。
 
-For many, Calibre-Web has really swooped in to save the day, offering an alternative to a containerised Calibre instance that's resource-light and with a much more modern UI to boot.
+多くの人にとって、Calibre-Webは救世主のように現れ、コンテナ化されたCalibreインスタンスの代替として、軽量かつモダンなUIを提供してきました。
 
-However, when compared to full-fat Calibre, it unfortunately lacks a few core features leading many to run both services in parallel, each serving to fill in where the other lacks, resulting in an often clunky, imperfect solution.
+しかし、フル機能のCalibreと比較すると、残念ながらいくつかのコア機能が欠けています。その結果、多くのユーザーが両方のサービスを並行して稼働させ、互いの不足部分を補い合うという、しばしば不格好で不完全な解決策をとることになっています。
 
-## Goal of the Project 🎯
+## プロジェクトの目標 🎯
 
-Calibre-Web Automated aims to be an all-in-one solution, combining the modern lightweight web UI from Calibre-Web with the robust, versatile feature set of Calibre, with a slew of extra features and automations thrown in on top.
+Calibre-Web Automatedは、Calibre-Webのモダンで軽量なWeb UIと、Calibreの堅牢で多機能なセットを組み合わせ、さらに多くの追加機能と自動化を盛り込んだ、オールインワンのソリューションを目指しています。
 
 ![Calibre-Web Automated Example Homepage](README_images/CWA-Homepage.png)
-<p style="text-align:center;"><i>CWA allows you to keep your ebook library accessible & organised and looks good while doing it</i> 😎🦚</p>
+<p style="text-align:center;"><i>CWAを使えば、電子書籍ライブラリを整理してアクセスしやすくし、見た目も美しく保てます</i> 😎🦚</p>
 
-## _Affiliated Projects_ 👬
+## _関連プロジェクト_ 👬
 
 ### Calibre-Web Automated Book Downloader
 
-- An intuitive web interface for searching and requesting book downloads, designed to work seamlessly with Calibre-Web-Automated. This project streamlines the process of downloading books and preparing them for integration into your Calibre library
+- Calibre-Web-Automatedとシームレスに連携するように設計された、書籍の検索とダウンロードリクエストのための直感的なWebインターフェースです。書籍のダウンロードからCalibreライブラリへの統合準備までのプロセスを効率化します。
 
 [<img src="https://raw.githubusercontent.com/vadret/android/master/assets/get-github.png" alt="Get it on GitHub" height="80">](https://github.com/calibrain/calibre-web-automated-book-downloader)
 
@@ -56,7 +56,7 @@ ___
 
 ### Calibre-Web Companion
 
-- Built with **Flutter** and using **Material You**, [**Calibre Web Companion**](https://github.com/doen1el/calibre-web-companion) is an **unofficial companion application** for **Calibre Web** & **Calibre Web Automated** that allows you to browse your book collection and download books directly on your device, providing a much **more modern, mobile-friendly UX** than either service can currently provide on its own
+- **Flutter** と **Material You** で構築された [**Calibre Web Companion**](https://github.com/doen1el/calibre-web-companion) は、**Calibre Web** および **Calibre Web Automated** 向けの **非公式コンパニオンアプリ** です。デバイス上で直接書籍コレクションを閲覧・ダウンロードでき、どちらのサービス単体よりもはるかに **モダンでモバイルフレンドリーなUX** を提供します。
 
 <br>
 
@@ -66,232 +66,232 @@ ___
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/en/packages/de.doen1el.calibreWebCompanion/)
 [<img src="https://raw.githubusercontent.com/vadret/android/master/assets/get-github.png" alt="Get it on GitHub" height="80">](https://github.com/doen1el/calibre-web-companion)
 
-## Join our Community! ❤️
+## コミュニティに参加しよう！ ❤️
 
-- I want to say a **big thanks** 🙏 to all the members of this community that have taken the time to participate in the testing and development of this project and we encourage anyone who would like to to contribute in some way. Anyone of any level is welcome and every little helps!
-- **For anyone that wish to contribute to this project in some way**, please reach out on our Discord Server and see how you can best get involved:\
+- このプロジェクトのテストや開発に参加してくださったコミュニティメンバーの皆様に **大きな感謝** 🙏 を申し上げます。どのような形であれ貢献したいという方を歓迎します。どんなレベルの方でも大歓迎ですし、どんな些細なことでも助けになります！
+- **このプロジェクトに何らかの形で貢献したい方** は、Discordサーバーにご参加いただき、どのような関わり方が最適かご確認ください:\
     \
     [![](https://dcbadge.limes.pink/api/server/https://discord.gg/EjgSeek94R)](https://discord.gg/EjgSeek94R)
 
-- Or alternatively make your own companion project, come hang out and or come get help if you're facing issues :)
+- あるいは、独自のコンパニオンプロジェクトを作成したり、遊びに来たり、問題に直面した場合に助けを求めたりしてください :)
 
-## 🚨 To users planning to deploy via Network Shares (particularly NFS) 🚨
+## 🚨 ネットワーク共有（特にNFS）経由でのデプロイを計画しているユーザーへ 🚨
 
-- Calibre, Calibre-Web and CWA are all SQLite3 based applications and as a result **don't like being run over network shares (especially NFS)**
-    - SQLite is designed as a lightweight, file-based database system, and it assumes the underlying file system supports certain guarantees about **file locking, atomic writes, and consistency**
-    - **Network file systems (e.g., NFS, SMB/CIFS, etc.) often do not meet these assumptions, which can lead to issues.**
-  - Some users are successful in deploying CWA across NFS shares however doing so **can produce a lot of hard to diagnose issues** that take time away from users with actual issues
-  - **Therefore as of V3.0.0, deployments over NFS shares are "unsupported"**, meaning **you are free to do so**, but **support will not be provided for users facing issues**
+- Calibre、Calibre-Web、そしてCWAはすべてSQLite3ベースのアプリケーションであり、**ネットワーク共有（特にNFS）上での実行を好みません**。
+    - SQLiteは軽量なファイルベースのデータベースシステムとして設計されており、基礎となるファイルシステムが **ファイルロック、アトミック書き込み、整合性** に関する特定の保証をサポートしていることを前提としています。
+    - **ネットワークファイルシステム（例：NFS, SMB/CIFSなど）は、しばしばこれらの前提を満たさないことがあり、問題を引き起こす可能性があります。**
+  - NFS共有上でCWAを展開して成功しているユーザーもいますが、そうすることで **診断が困難な問題が多数発生する可能性があり**、実際の問題を抱えているユーザーのサポートに時間を割くことになりかねません。
+  - **したがって、V3.0.0以降、NFS共有上での展開は「非サポート」となります**。つまり、**自由に行っていただけますが**、**問題が発生した場合のサポートは提供されません**。
 
-### Network shares and SQLite WAL mode
+### ネットワーク共有とSQLite WALモード
 
-- CWA optimizes SQLite concurrency by enabling Write-Ahead Logging (WAL) on local disks.
-- Some network filesystems (NFS/SMB) do not fully support WAL or reliable file locking, which can cause intermittent "database is locked" errors or corruption risks.
-- If you are deploying on a network share, set the following environment variable to disable WAL:
+- CWAは、ローカルディスク上でWrite-Ahead Logging (WAL) を有効にすることでSQLiteの並行性を最適化しています。
+- 一部のネットワークファイルシステム (NFS/SMB) はWALや信頼性の高いファイルロックを完全にはサポートしておらず、断続的な「データベースがロックされています」エラーや破損のリスクを引き起こす可能性があります。
+- ネットワーク共有上にデプロイする場合は、以下の環境変数を設定してWALを無効にしてください:
 
   - `NETWORK_SHARE_MODE=true`
 
-This tells CWA to avoid enabling WAL on the Calibre `metadata.db` and the `app.db` settings database. It also disables recursive ownership changes (`chown`) performed by init/maintenance scripts to avoid permission issues on network filesystems. Default is `false` (WAL enabled) for better performance on local disks.
+これにより、Calibreの `metadata.db` および `app.db` 設定データベースでWALを有効にしないようCWAに指示します。また、ネットワークファイルシステム上の権限問題を回避するために、初期化/メンテナンススクリプトによる再帰的な所有権変更 (`chown`) も無効化します。デフォルトは `false` (WAL有効) で、ローカルディスクでのパフォーマンスが向上します。
 
-#### File watching on network shares
+#### ネットワーク共有でのファイル監視
 
-- By default, CWA uses Linux `inotify` (via `inotifywait`) to detect new files in the ingest folder with minimal latency and overhead.
-- On network shares (NFS/SMB), filesystem events can be unreliable or unavailable. When `NETWORK_SHARE_MODE=true` is set, CWA switches the ingest and metadata watcher services to a polling-based watcher that periodically scans for changes. This improves reliability on NAS/network mounts at the cost of slightly higher I/O and up to a few seconds of latency.
-- On Docker Desktop (Windows/macOS), the container runs on a LinuxKit/WSL2 VM and host-mounted paths may not propagate `inotify` events reliably. CWA auto-detects Docker Desktop at startup and prefers the same polling watcher for reliability.
-- Advanced: You can also force polling regardless of share mode by setting `CWA_WATCH_MODE=poll`.
+- デフォルトでは、CWAはLinuxの `inotify` (`inotifywait`経由) を使用して、取り込み（Ingest）ディレクトリ内の新しいファイルを最小限の遅延とオーバーヘッドで検出します。
+- ネットワーク共有 (NFS/SMB) 上では、ファイルシステムイベントが信頼できないか、利用できない場合があります。`NETWORK_SHARE_MODE=true` が設定されると、CWAは取り込みおよびメタデータ監視サービスを、定期的に変更をスキャンするポーリングベースの監視に切り替えます。これにより、NAS/ネットワークマウント上での信頼性は向上しますが、I/Oがわずかに増加し、最大数秒の遅延が発生します。
+- Docker Desktop (Windows/macOS) 上では、コンテナはLinuxKit/WSL2 VM上で実行され、ホストマウントされたパスは `inotify` イベントを確実に伝播しない場合があります。CWAは起動時にDocker Desktopを自動検出し、信頼性のために同様のポーリング監視を優先します。
+- 上級者向け: `CWA_WATCH_MODE=poll` を設定することで、共有モードに関係なくポーリングを強制することもできます。
 
-### Running behind multiple proxies (Cloudflare Tunnel, reverse proxy)
+### 複数のプロキシ（Cloudflare Tunnel、リバースプロキシ）の背後での実行
 
-- CWA uses Werkzeug's ProxyFix middleware to properly handle `X-Forwarded-For`, `X-Forwarded-Proto`, and other proxy headers.
-- By default, it trusts **1 proxy** in the chain. If you have multiple proxies (e.g., Cloudflare Tunnel → nginx → CWA), set:
+- CWAはWerkzeugのProxyFixミドルウェアを使用して、`X-Forwarded-For`、`X-Forwarded-Proto`、その他のプロキシヘッダーを適切に処理します。
+- デフォルトでは、チェーン内の **1つのプロキシ** を信頼します。複数のプロキシがある場合（例：Cloudflare Tunnel → nginx → CWA）、以下を設定してください:
 
-  - `TRUSTED_PROXY_COUNT=2` (or the total number of proxies in your chain)
+  - `TRUSTED_PROXY_COUNT=2` (またはチェーン内のプロキシの総数)
 
-- **Why this matters**: Session protection validates requests based on the client's IP address. If ProxyFix doesn't trust enough proxies, it may see different IPs between requests, causing "Session protection triggered" warnings and forcing re-login.
-- **Troubleshooting**: If you see frequent session protection warnings in logs, check your proxy chain depth and adjust this variable accordingly.
+- **これが重要な理由**: セッション保護はクライアントのIPアドレスに基づいてリクエストを検証します。ProxyFixが十分な数のプロキシを信頼していない場合、リクエスト間で異なるIPが見えてしまい、「セッション保護がトリガーされました」という警告が発生し、再ログインを強制される可能性があります。
+- **トラブルシューティング**: ログに頻繁にセッション保護の警告が表示される場合は、プロキシチェーンの深さを確認し、この変数を適宜調整してください。
 
-## **_Features:_**
+## **_機能_**:
 
-### CWA supports all Stock CW Features:
+### CWAは通常のCalibre-Webの全機能をサポートしています:
 | | | |
 |     :---:    |     :---:      |     :---:     |
-| Modern & responsive Bootstrap 3 HTML5 interface | Comprehensive user management with per-user permissions | OPDS feed for ereader apps |
-| eBook metadata editing and deletion support | Metadata download from various sources (extensible via plugins) | eBook download restriction to logged-in users |
-| Public user registration support | Send eBooks to E-Readers with a single click | Sync Kobo devices with your Calibre library |
-| In-browser eBook reading support for multiple formats | Content hiding based on categories and Custom Column content per user | "Magic Link" login for easy access on eReaders |
-| Enhanced OAuth 2.0/OIDC authentication with auto-discovery | Advanced search and filtering options | Multilingual user interface supporting 20+ [languages](https://github.com/janeczku/calibre-web/wiki/Translation-Status) |
+| モダンでレスポンシブなBootstrap 3 HTML5インターフェース | ユーザーごとの権限設定を含む包括的なユーザー管理 | 電子書籍リーダーアプリ向けOPDSフィード |
+| 電子書籍メタデータの編集と削除サポート | 様々なソースからのメタデータダウンロード（プラグインで拡張可能） | ログインユーザーへの電子書籍ダウンロード制限 |
+| 公開ユーザー登録のサポート | ワンクリックで電子書籍リーダーへ送信 | KoboデバイスとCalibreライブラリの同期 |
+| ブラウザ内での複数形式電子書籍閲覧サポート | カテゴリおよびカスタムカラムの内容に基づいたユーザーごとのコンテンツ非表示 | 電子書籍リーダーからの簡単なアクセスのための「マジックリンク」ログイン |
+| 自動検出を備えた強化されたOAuth 2.0/OIDC認証 | 高度な検索とフィルタリングオプション | 20以上の[言語](https://github.com/janeczku/calibre-web/wiki/Translation-Status)に対応した多言語ユーザーインターフェース |
 
-## Plus these _**CWA Specific Features**_ on top:
+## さらに、以下の _**CWA独自の機能**_ が追加されています:
 
-#### Click a feature below to read about it in more detail:
+#### 詳細を読むには機能をクリックしてください:
 
 | | | |
 |     :---:    |     :---:      |     :---:     |
-| [Automatic Ingest Service ✨](#automatic-ingest-service-) | [Automatic Conversion Service 🔃](#automatic-conversion-service-) | [Automatic Enforcement of Covers & Metadata 👀📔](#automatic-enforcement-of-changes-made-to-covers--metadata-through-the-calibre-web-ui-) |
-| [Batch Editing & Deletion 🗂️](#batch-editing--deletion-️️) | [Automated Back Up Service 🔒](#automated-back-up-service-) | [Automated Setup Experience for New Users 🦮](#library-auto-detect-️) |
-| [Automatic EPUB Fixer Service 🔨](#automatic-epub-fixer-service-) | [Multi-Format Conversion Service 🌌](#simple-to-use-multi-format-conversion-service-) | [Library Auto-Detect 📚🕵️](#library-auto-detect-️) |
-| [Server Stats Tracking Page 📍](#server-stats-tracking-page-) | [Server Stats Tracking 📊](#server-stats-tracking-page-) | [Easy Dark/ Light Mode Switching ☀️🌙](#easy-dark-light-mode-switching-️) |
-| [Internal Update Notification System 🛎️](#internal-update-notification-system-️) | [Auto-Compression of Backed Up Files 🤐](#auto-compression-of-backed-up-files-) | [Additional Metadata Providers 🗃️](#additional-metadata-providers-️) |
-| [KOReader Syncing (KOSync) 📖⚡](#koreader-syncing-kosync-) | [Enhanced OAuth 2.0/OIDC Authentication 🔐](#enhanced-oauth-20oidc-authentication-) | |
+| [自動取り込みサービス ✨](#自動取り込みサービス-) | [自動変換サービス 🔃](#自動変換サービス-) | [表紙・メタデータの変更を自動適用 👀📔](#calibre-web-uiで行った表紙メタデータの変更を自動適用-) |
+| [一括編集・削除 🗂️](#一括編集削除-️️) | [自動バックアップサービス 🔒](#自動バックアップサービス-) | [新規ユーザー向け自動セットアップ 🦮](#ライブラリ自動検出-️) |
+| [自動EPUB修復サービス 🔨](#自動epub修復サービス-) | [マルチ形式変換サービス 🌌](#使いやすいマルチ形式変換サービス-) | [ライブラリ自動検出 📚🕵️](#ライブラリ自動検出-️) |
+| [サーバー統計追跡ページ 📍](#サーバー統計追跡ページ-) | [サーバー統計追跡 📊](#サーバー統計追跡ページ-) | [簡単ダーク/ライトモード切替 ☀️🌙](#簡単ダークライトモード切替-️) |
+| [内部アップデート通知システム 🛎️](#内部アップデート通知システム-️) | [バックアップファイルの自動圧縮 🤐](#バックアップファイルの自動圧縮-) | [追加のメタデータプロバイダー 🗃️](#追加のメタデータプロバイダー-️) |
+| [KOReader 同期 (KOSync) 📖⚡](#koreader-同期-kosync-) | [強化されたOAuth 2.0/OIDC認証 🔐](#強化されたoauth-20oidc認証-) | |
 
-#### **Automatic Ingest Service** ✨
-- CWA currently supports automatic ingest of 27 different popular ebook formats
-- Users can configure the services behavior to ignore and/or have certain formats automatically converted to other formats in the Admin Panel
+#### **自動取り込みサービス** ✨
+- CWAは現在、27種類の一般的な電子書籍形式の自動取り込みをサポートしています。
+- ユーザーは管理者パネルで、特定の形式を無視したり、他の形式へ自動変換したりするように動作を設定できます。
 
-<!-- - A **Weighted Conversion Algorithm:** ⚖️
-  - Using the information provided in the Calibre eBook-converter documentation on which formats convert best into epubs, CWA is able to determine from downloads containing multiple eBook formats, which format will convert most optimally, ignoring the other formats to ensure the **best possible quality** and no **duplicate imports** -->
+<!-- - **重み付け変換アルゴリズム:** ⚖️
+  - どの形式がEPUBに最適に変換されるかというCalibreの電子書籍変換ドキュメントの情報を利用し、CWAは複数の電子書籍形式を含むダウンロードから、どの形式が最も最適に変換されるかを判断し、他の形式を無視して **可能な限り最高の品質** を確保し、**重複インポート** を防ぎます -->
 
-#### **Automatic Conversion Service** 🔃
-- On by default though can be toggled of in the CWA Settings page, with EPUB as the default target format
-  - _Available target formats include:_ **EPUB**, **MOBI**, **AZW3**, **KEPUB** & **PDF**
-- Upon detecting new files in the Ingest Directory, if any of the files are in formats the user has configured CWA to auto-convert to the current target format,
-- The following **28 file types are currently supported:**
+#### **自動変換サービス** 🔃
+- デフォルトでオンになっていますが、CWA設定ページでオフに切り替えることもできます。デフォルトのターゲット形式はEPUBです。
+  - _利用可能なターゲット形式:_ **EPUB**, **MOBI**, **AZW3**, **KEPUB** & **PDF**
+- 取り込みディレクトリ内の新しいファイルを検出すると、ユーザーが自動変換するように設定した形式のファイルがある場合、ターゲット形式へ変換されます。
+- 現在、以下の **28種類のファイル形式がサポートされています:**
   - _.acsm, .azw, .azw3, .azw4, .mobi, .cbz, .cbr, .cb7, .cbc, .chm, .djvu, .docx, .epub, .fb2, .fbz, .html, .htmlz, .lit, .lrf, .odt, .pdf, .prc, .pdb, .pml, .rb, .rtf, .snb, .tcr, .txtz_
-  - _Note: .acsm requires an additional Calibre plugin_
+  - _注: .acsm には追加のCalibreプラグインが必要です_
 
-#### **Automatic Enforcement of Changes made to Covers & Metadata through the Calibre-Web UI!** 👀📔
-- In stock Calibre-Web, any changes made to a book's **Cover and/or Metadata** are only applied to how the book appears in the Calibre-Web UI, changing nothing in the ebook's files like you would expect
-- This results in a frustrating situation for many CW users who utilise CW's Send-To-Kindle function, and are disappointed to find that the High-Quality Covers they picked out and carefully chosen Metadata they sourced are completely absent on all their other devices! UGH!
-- CWA's **Automatic Cover & Metadata Enforcement Feature** makes it so that **WHATEVER** you changes you make to **YOUR** books, **_are made to the books themselves_**, as well as in the Web UI, **making what you see, what you get.**
+#### **Calibre-Web UIで行った表紙・メタデータの変更を自動適用！** 👀📔
+- 通常のCalibre-Webでは、本の **表紙やメタデータ** に加えた変更はCalibre-Web UI上の表示にのみ適用され、期待に反して電子書籍ファイル自体には何も変更が加えられません。
+- これは、CWのKindleへの送信機能を利用している多くのユーザーにとって不満の種となっており、せっかく選んだ高画質の表紙や慎重に選んだメタデータが他のデバイスでは完全に欠落していることに失望することになります！うわぁ！
+- CWAの **自動表紙・メタデータ適用機能** により、**あなたの** 本に加えた **どのような** 変更も、Web UIだけでなく **_本そのものにも適用され_**、**見たままが得られるようになります。**
 
 ![Cover Enforcement CWA](README_images/cwa-enforcer-diagram.png "CWA 1.2.0 Cover Enforcement Diagram")
 
-#### **Batch Editing & Deletion!** 🗂️🗄️
-- Say goodbye to clicking that edit button again, and again, and again just to remove or edit a single series!
-- To use, simply navigate to the `Books List`page on the left hand side of the Web UI, select the books you wish to edit/ delete and use the buttons either above the table or within the headers to do whatever you need!
-- _Courtesy of [@jmarmstrong1207](https://github.com/jmarmstrong1207)_
+#### **一括編集・削除！** 🗂️🗄️
+- たった一つのシリーズを削除したり編集したりするためだけに、編集ボタンを何度も何度もクリックするのはもう終わりです！
+- 利用するには、Web UIの左側にある `本の一覧` ページに移動し、編集/削除したい本を選択して、テーブルの上またはヘッダー内のボタンを使って必要な操作を行うだけです！
+- _提供: [@jmarmstrong1207](https://github.com/jmarmstrong1207)_
 
 ![](/README_images/cwa-bulk-editting-diagram.png)
 
-#### **Automated Back Up Service** 🔒
-- Worried what will happen if something goes wrong during one of CWA's automated functions? Don't be!
-- By default, the originals all files processed by CWA are stored in `/config/processed_books` though this can be toggled in the CWA Settings panel
+#### **自動バックアップサービス** 🔒
+- CWAの自動機能中に何か問題が起きたらどうしようと心配ですか？心配無用です！
+- デフォルトでは、CWAによって処理されたすべてのファイルのオリジナルは `/config/processed_books` に保存されます。これはCWA設定パネルで切り替えることができます。
 
-#### **Automatic EPUB Fixer Service** 🔨
-- Ever had it where you're super excited to start reading your next book but for some reason, Amazon's Send-to-Kindle service just keeps rejecting it? Well no more!
+#### **自動EPUB修復サービス** 🔨
+- 次の本を読み始めようとワクワクしているのに、なぜかAmazonのSend-to-Kindleサービスが拒否し続ける、という経験はありませんか？もうそんなことはありません！
 
-- Originally developed by [innocenat](https://github.com/innocenat/kindle-epub-fix), this tool corrects the following potential issues for every EPUB processed by CWA:
-  - Fixes UTF-8 encoding problem by adding UTF-8 declaration if no encoding is specified
-  - Fixes hyperlink problem (result in Amazon rejecting the EPUB) when NCX table of content link to `<body>` with ID hash.
-  - Detect invalid and/or missing language tag in metadata, and prompt user to select new language.
-  - Remove stray `<img>` tags with no source field.
-  - Resolves several EPUB compatibility issues, such as UTF-8 encoding, hyperlink problems, invalid/missing language tags, and stray image tags.
-- This **ensures maximum comparability** for each EPUB file with the Amazon **Send-to-Kindle** service and for those who don't use Amazon devices, has the side benefit of cleaning up your lower quality files!
-- Enabled by default but can be toggled in settings.
-- Files processed by the EPUB-Fixer service are by default automatically backed up to `/config/processed_books` however this can also be toggled in the settings.
-- Bulk processing of whole library with progress tracking available in the Admin Panel
-- Available via both the Web UI and CLI
+- 元々は [innocenat](https://github.com/innocenat/kindle-epub-fix) によって開発されたこのツールは、CWAによって処理されるすべてのEPUBについて、以下の潜在的な問題を修正します:
+  - エンコーディングが指定されていない場合にUTF-8宣言を追加してUTF-8エンコーディング問題を修正
+  - NCX目次がIDハッシュ付きの `<body>` にリンクしている場合のハイパーリンク問題を修正（AmazonがEPUBを拒否する原因となります）
+  - メタデータ内の無効または欠落している言語タグを検出し、ユーザーに新しい言語を選択するよう促す
+  - ソースフィールドのない迷子の `<img>` タグを削除
+  - UTF-8エンコーディング、ハイパーリンクの問題、無効/欠落した言語タグ、迷子の画像タグなど、いくつかのEPUB互換性の問題を解決
+- これにより、各EPUBファイルとAmazon **Send-to-Kindle** サービスとの **最大限の互換性を確保** し、Amazonデバイスを使用していないユーザーにとっても、低品質なファイルをクリーンアップできるという副次的なメリットがあります！
+- デフォルトで有効ですが、設定で切り替えることができます。
+- EPUB修復サービスによって処理されたファイルは、デフォルトで自動的に `/config/processed_books` にバックアップされますが、これも設定で切り替えることができます。
+- 管理者パネルで進捗追跡可能なライブラリ全体の一括処理が利用可能です。
+- Web UIとCLIの両方から利用可能です。
 
-#### **Simple to use Multi-Format Conversion Service** 🌌
-- This utility gives the user the option to either keep a copy of the original of all converted files in `/config/processed_books` or to trust the process and have CWA simply convert and replace those files (not recommended)
-- Full usage details can be found [here](#the-convert-library-tool)
+#### **使いやすいマルチ形式変換サービス** 🌌
+- このユーティリティは、変換されたすべてのファイルのオリジナルを `/config/processed_books` に保存するか、プロセスを信頼してCWAに単純にファイルを変換・置換させるか（非推奨）のオプションをユーザーに提供します。
+- 完全な使用方法は [こちら](#使いやすいマルチ形式変換サービス-) をご覧ください。
 
 ![CWA Convert Library Web UI](/README_images/CWA-new-process-ui.gif)
 
-#### **Additional Metadata Providers** 🗃️
-- Users can now make use of [isbndb.com](https://isbndb.com/)'s huge database when fetching metadata for the books in their library!
-- Access is being provided via [ibdb.dev](https://ibdb.dev/) thanks to a generous donation to the community by [@chad3814](https://www.github.com/chad3814)
-- [Hardcover](https://hardcover.app/) is also currently in the process of being added to CWA as a Metadata Provider
+#### **追加のメタデータプロバイダー** 🗃️
+- ユーザーは、ライブラリ内の本のメタデータを取得する際に、[isbndb.com](https://isbndb.com/) の巨大なデータベースを利用できるようになりました！
+- [@chad3814](https://www.github.com/chad3814) によるコミュニティへの寛大な寄付のおかげで、[ibdb.dev](https://ibdb.dev/) を通じてアクセスが提供されています。
+- [Hardcover](https://hardcover.app/) も現在、メタデータプロバイダーとしてCWAに追加する作業が進められています。
 
-#### **KOReader Syncing (KOSync)** 📖⚡
-Built-in KOReader progress sync with automatic book identification:
-- **Book Identification:** Auto-generates KOReader-compatible partial MD5 checksums for all books
-- **Unified Progress:** Syncs KOReader → CWA reading status → Kobo devices
-- **Zero Config:** Checksums generated on startup and import, no manual setup
-- **Modern Auth:** RFC 7617 HTTP Basic Auth with existing CWA accounts
-- **Plugin Available:** Download from `/kosync` endpoint on your CWA instance
+#### **KOReader 同期 (KOSync)** 📖⚡
+自動書籍識別機能を備えた組み込みのKOReader進捗同期:
+- **書籍識別:** すべての書籍に対してKOReader互換の部分MD5チェックサムを自動生成
+- **統合された進捗:** KOReader → CWA読書状況 → Koboデバイス間の同期
+- **ゼロ設定:** 起動時およびインポート時にチェックサムを生成するため、手動設定は不要
+- **モダンな認証:** 既存のCWAアカウントを使用したRFC 7617 HTTP Basic認証
+- **プラグイン利用可能:** CWAインスタンスの `/kosync` エンドポイントからダウンロード可能
 
-#### **Enhanced OAuth 2.0/OIDC Authentication** 🔐
-- **Auto-Discovery:** Automatic endpoint configuration via OIDC metadata URLs for seamless setup with providers like Keycloak, Authentik, Google, and Azure AD
-- **Manual Override:** Full manual control over OAuth endpoints when auto-discovery isn't available
-- **Field Mapping:** Configurable JWT field extraction for usernames and emails to work with any provider's token structure
-- **Group-Based Roles:** Automatic admin role assignment based on OAuth provider groups
-- **Testing Tools:** Built-in connection testing and validation to ensure your configuration works before going live
-- **Enterprise Ready:** Support for custom scopes, multiple authentication methods, and comprehensive troubleshooting
-- **📖 [Full OAuth Configuration Guide](https://github.com/crocodilestick/Calibre-Web-Automated/wiki/OAuth-Configuration)** for detailed setup instructions
+#### **強化されたOAuth 2.0/OIDC認証** 🔐
+- **自動検出:** Keycloak, Authentik, Google, Azure ADなどのプロバイダーとのシームレスなセットアップのための、OIDCメタデータURLによる自動エンドポイント設定
+- **手動オーバーライド:** 自動検出が利用できない場合のOAuthエンドポイントの完全な手動制御
+- **フィールドマッピング:** あらゆるプロバイダーのトークン構造に対応するための、ユーザー名とメールアドレスのJWTフィールド抽出設定
+- **グループベースのロール:** OAuthプロバイダーのグループに基づいた管理者ロールの自動割り当て
+- **テストツール:** 本番稼働前に設定が機能することを確認するための組み込みの接続テストと検証機能
+- **エンタープライズ対応:** カスタムスコープ、複数の認証方法、包括的なトラブルシューティングのサポート
+- 詳細なセットアップ手順については **📖 [完全なOAuth設定ガイド](https://github.com/crocodilestick/Calibre-Web-Automated/wiki/OAuth-Configuration)** をご覧ください
 
-#### **Server Stats Tracking Page** 📍📊
-  - Ever wondered how many times CWA has been there for you in the background? Check out the CWA Stats page to see a fun list of statistics showing how many times CWA has been there to make your life just that little bit easier
-- A database also exists to keep track of any and all enforcements, imports, conversions & fixes both for peace of mind and to make the checking of any bugs or weird behaviour easier
-  <!-- - Full documentation can be found below [here](#checking-the-cover-enforcement-logs) -->
+#### **サーバー統計追跡ページ** 📍📊
+  - CWAがバックグラウンドでどれだけあなたを支えてきたか気になったことはありませんか？CWA統計ページをチェックして、あなたの生活を少しだけ楽にするためにCWAがどれだけ働いたかを示す楽しい統計リストを見てみましょう。
+- 安心のため、そしてバグや奇妙な挙動の確認を容易にするために、すべての適用、インポート、変換、修正を記録するデータベースも存在します。
+  <!-- - 完全なドキュメントは以下の [こちら](#サーバー統計追跡ページ-) にあります -->
 
 ![CWA Server Stats Page](/README_images/cwa-server-stats-page.png)
 
-#### **Library Auto-Detect** 📚🕵️
-  - Made to **MASSIVELY** simplify the setup process for both **new and existing users** alike
-  - **New Users without existing Libraries:** 🆕
-    - **No library? No problem!**
-    - New users without existing Calibre Libraries no longer need to copy and paste `metadata.db` files and point to their location in the Web UI, CWA will now automatically detect the lack of Library in your given bind and automatically create a new one for you! It will even automatically register it with the Web UI so you can really hit the ground running
-  - **New or Existing Users with Existing Libraries:**
-    - Simply bind a directory containing your Calibre Library (search is done recursively so it doesn't matter how deep in the directory it is) and CWA will now automatically find it and mount it to the Web UI
-    - Should you bind a directory with more than 1 Calibre Library in it, CWA will intelligently compare the disk sizes of all discovered libraries and mount the largest one
-      - _CWA supports only one library per instance though support for multiple libraries is being investigated for future releases_
-      - _In the meantime, users with multiple libraries who don't want to consolidate them are advised to run multiple, parallel instances_
+#### **ライブラリ自動検出** 📚🕵️
+  - **新規ユーザーと既存ユーザー** の両方にとって、セットアッププロセスを **大幅に** 簡素化するために作られました。
+  - **既存のライブラリを持たない新規ユーザー:** 🆕
+    - **ライブラリがない？問題ありません！**
+    - 既存のCalibreライブラリを持たない新規ユーザーは、もう `metadata.db` ファイルをコピー＆ペーストしてWeb UIでその場所を指定する必要はありません。CWAは指定されたバインド内にライブラリがないことを自動的に検出し、新しいライブラリを自動作成します！さらにWeb UIに自動的に登録するので、すぐに使い始めることができます。
+  - **既存のライブラリを持つ新規または既存ユーザー:**
+    - Calibreライブラリを含むディレクトリをバインドするだけで（再帰的に検索されるため、ディレクトリの深さは関係ありません）、CWAが自動的にそれを見つけてWeb UIにマウントします。
+    - 複数のCalibreライブラリを含むディレクトリをバインドした場合、CWAは発見されたすべてのライブラリのディスクサイズを賢く比較し、最大のものをマウントします。
+      - _CWAはインスタンスごとに1つのライブラリのみサポートしていますが、将来のリリースに向けて複数ライブラリのサポートが検討されています_
+      - _それまでの間、統合したくない複数のライブラリを持つユーザーは、複数の並行したインスタンスを実行することをお勧めします_
 
-#### **Easy Dark/ Light Mode Switching** ☀️🌙
-  - **Switch between Light & Dark Modes in just one click from anywhere in the Web UI!**
-  - Simply click/tap the 🕶️ icon on the  Web UI's navbar and switch between themes at your leisure
+#### **簡単ダーク/ライトモード切替** ☀️🌙
+  - **Web UIのどこからでもワンクリックでライトモードとダークモードを切り替えられます！**
+  - Web UIのナビゲーションバーにある 🕶️ アイコンをクリック/タップするだけで、いつでもテーマを切り替えられます。
 
-#### **Internal Update Notification System** 🛎️
-  - Users will now be automatically notified of the availability of new updates from within the Web UI
-  - Automatically triggered by a difference between the version number of the most recent GitHub release and the version installed
-  - Set to only show once per calendar day until updated as to not be annoying
-  - _Visible to Admin users only_
+#### **内部アップデート通知システム** 🛎️
+  - ユーザーは、Web UI内から新しいアップデートの利用可能性を自動的に通知されるようになります。
+  - 最新のGitHubリリースのバージョン番号とインストールされているバージョンの違いによって自動的にトリガーされます。
+  - 煩わしくないように、アップデートされるまで1暦日につき1回のみ表示されるように設定されています。
+  - _管理者ユーザーにのみ表示されます_
 
-#### **Manual Library Refresh** ♻️
-  - Ever had books get stuck in the ingest folder after an unexpected power-cut ect.? Well say goodbye to having to manually copy the books to be ingested back in and out of the ingest folder, simply press the `Refresh Library` button on the navbar of the Web UI and anything still sitting in the ingest folder will be automatically ingested!
+#### **手動ライブラリ更新** ♻️
+  - 予期せぬ停電などで、本が取り込みフォルダに残ってしまったことはありませんか？もう手動で本を取り込みフォルダに出し入れする必要はありません。Web UIのナビゲーションバーにある `ライブラリ更新` ボタンを押すだけで、取り込みフォルダに残っているものはすべて自動的に取り込まれます！
 
-#### **Auto-Compression of Backed Up Files** 🤐
-  - Just before midnight each day, the CWA-Auto-Zipper service will automatically zip together all files processed that day.
-  - Minimises disk space usage and helps keep back up files as organised as possible
-  - __Enabled by default but can be disabled in the CWA Settings page in the Admin panel__
+#### **バックアップファイルの自動圧縮** 🤐
+  - 毎日深夜の直前に、CWA-Auto-Zipperサービスがその日に処理されたすべてのファイルを自動的にzip圧縮します。
+  - ディスク使用量を最小限に抑え、バックアップファイルを可能な限り整理された状態に保つのに役立ちます。
+  - __デフォルトで有効ですが、管理者パネルのCWA設定ページで無効にすることができます__
 
 ![Calibre-Web Automated](README_images/cwa-bulk-editting-diagram.png "Calibre-Web Automated Bulk Editing & Bulk Deletion")
 
-# Features Currently Under Active Development and on our Roadmap 🏗️🛣️
+# 現在開発中でロードマップにある機能 🏗️🛣️
 
-#### High Priority 🚨
+#### 優先度 高 🚨
 
-- Integration of CWA with [Hardcover](https://hardcover.app/) 📚
-  - Ability to use Hardcover as a Metadata Provider
-  - Ability to sync read progress with your Hardcover account! (Kobo users only)
-- A companion project to integrate CWA with the Friendliest & Warmest Place on the Internet 🐭🧀
-- Support for Calibre Plugins e.g. deDRM 🔌
-- Split Libraries (having your Calibre Library and books in separate locations)
+- CWAと [Hardcover](https://hardcover.app/) の統合 📚
+  - メタデータプロバイダーとしてのHardcoverの使用機能
+  - 読書進捗をHardcoverアカウントと同期する機能！（Koboユーザーのみ）
+- インターネット上で最もフレンドリーで暖かい場所とCWAを統合するためのコンパニオンプロジェクト 🐭🧀
+- Calibreプラグインのサポート（例：deDRM） 🔌
+- ライブラリ分割（Calibreライブラリと書籍ファイルを別の場所に配置）
 
-#### Lower Priority 🌱
+#### 優先度 低 🌱
 
-- Notification system integrations e.g. Telegram, Gotify, ntfy ect. 📧
-- Possible Prowlarr Integration 🐯
+- 通知システムの統合（例：Telegram, Gotify, ntfyなど） 📧
+- Prowlarr統合の可能性 🐯
 
-Please suggest any ideas or wishes you might have! we're open to anything!
+アイデアや要望があればぜひ提案してください！どんなことでも歓迎します！
 
-# How To Install 📖
+# インストール方法 📖
 
-## Quick Install 🚀
+## クイックインストール 🚀
 
-1. Download the Docker Compose template file using the command below:
+1. 以下のコマンドを使用してDocker Composeテンプレートファイルをダウンロードします:
 
 ```
 curl -OL https://raw.githubusercontent.com/crocodilestick/calibre-web-automated/main/docker-compose.yml
 ```
 
-2. Move the compose file to an empty folder (e.g. ~/docker/calibre-web-automated/docker-compose.yml). This will be used to store the server data and library
+2. Composeファイルを空のフォルダ（例：~/docker/calibre-web-automated/docker-compose.yml）に移動します。これはサーバーデータとライブラリを保存するために使用されます。
 
-3. Edit the compose file using the comments to help, filling in your Timezone (optional) and desired binds
+3. コメントを参考にComposeファイルを編集し、タイムゾーン（オプション）と希望するバインドを入力します。
 
-4. Navigate to where you downloaded the Compose file using `cd` and run:
+4. `cd` を使用してComposeファイルをダウンロードした場所に移動し、以下を実行します:
 
 ```
 docker compose up -d
 ```
 
-And that's you off to the races! 🥳 HOWEVER to avoid potential problems and ensure maximum functionality, we recommend carrying out these [Post-Install Tasks Here](#post-install-tasks).
+これで準備完了です！ 🥳 ただし、潜在的な問題を回避し、機能を最大限に活用するために、これらの [インストール後のタスク](#インストール後のタスク) を実行することをお勧めします。
 
 ---
-## Using Docker Compose 🐋⭐(Recommended)
+## Docker Composeの使用 🐋⭐(推奨)
 
-### 1. Setup the container using the Docker Compose template below: 🐋📜
+### 1. 以下のDocker Composeテンプレートを使用してコンテナをセットアップします: 🐋📜
 
 ~~~ bash
 ---
@@ -300,135 +300,135 @@ services:
     image: crocodilestick/calibre-web-automated:latest
     container_name: calibre-web-automated
     environment:
-      # Only change these if you know what you're doing
+      # 理解している場合のみ変更してください
       - PUID=1000
       - PGID=1000
-      # Edit to match your current timezone https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+      # お住まいのタイムゾーンに合わせて編集してください https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
       - TZ=UTC
-      # Hardcover API Key required for Hardcover as a Metadata Provider, get one here: https://docs.hardcover.app/api/getting-started/
+      # Hardcoverをメタデータプロバイダーとして使用する場合に必要なHardcover APIキー。こちらで入手: https://docs.hardcover.app/api/getting-started/
       - HARDCOVER_TOKEN=your_hardcover_api_key_here
-      # If your library is on a network share (e.g., NFS/SMB), disable WAL to reduce locking issues
-      # Accepts: true/false (default: false)
+      # ライブラリがネットワーク共有（例：NFS/SMB）上にある場合、ロックの問題を減らすためにWALを無効にします
+      # 指定可能: true/false (デフォルト: false)
       - NETWORK_SHARE_MODE=false
-      # Override the default port (8083) for the web server.
-      # Accepts any valid port number.
+      # Webサーバーのデフォルトポート (8083) を上書きします。
+      # 任意の有効なポート番号を指定可能。
       - CWA_PORT_OVERRIDE=8083
     volumes:
-      # CW users migrating should stop their existing CW instance, make a copy of the config folder, and bind that here to carry over all of their user settings ect.
+      # 移行するCWユーザーは、既存のCWインスタンスを停止し、configフォルダのコピーを作成して、ここにバインドしてすべてのユーザー設定などを引き継ぐ必要があります。
       - /path/to/config/folder:/config
-      # This is an ingest dir, NOT a library one. Anything added here will be automatically added to your library according to the settings you have configured in CWA Settings page. All files placed here are REMOVED AFTER PROCESSING
+      # これは取り込みディレクトリであり、ライブラリディレクトリではありません。ここに追加されたものはすべて、CWA設定ページで設定した内容に従って自動的にライブラリに追加されます。ここに置かれたすべてのファイルは処理後に削除されます
       - /path/to/the/folder/you/want/to/use/for/book/ingest:/cwa-book-ingest
-      # If you don't have an existing library, CWA will automatically create one at the bind provided here
+      # 既存のライブラリがない場合、CWAはここに提供されたバインドで自動的にライブラリを作成します
       - /path/to/your/calibre/library:/calibre-library
-      # If you use calibre plugins, you can bind your plugins folder here to have CWA attempt to add them to its workflow (WIP)
-      # If you are starting with a fresh install, you also need to copy customize.py.json to the Calibre config volume above, in /path/to/config/folder/.config/calibre/customize.py.json, see the note below for more info
+      # calibreプラグインを使用している場合、プラグインフォルダをここにバインドしてCWAのワークフローに追加させることができます（開発中）
+      # 新規インストールで始める場合、Calibreプラグインの親ディレクトリから customize.py.json を上記のCalibre configボリュームの /path/to/config/folder/.config/calibre/customize.py.json にコピーする必要があります。詳細は下記を参照してください
       - /path/to/your/calibre/plugins/folder:/config/.config/calibre/plugins
     ports:
-      # Change the first number to change the port you want to access the Web UI, not the second
+      # 2番目の数字ではなく、最初の数字を変更してWeb UIにアクセスしたいポートを変更してください
       - 8083:8083
-    # If you set CWA_PORT_OVERRIDE to a port below 1024, you may need to uncomment the following line:
+    # CWA_PORT_OVERRIDEを1024未満のポートに設定した場合、以下の行のコメントを解除する必要があるかもしれません:
     # cap_add:
     #   - NET_BIND_SERVICE
     restart: unless-stopped
 ~~~
 
-### Explanation of the Container Bindings:
+### コンテナバインディングの説明:
 
-Please make sure all 3 of the main volume bindings are separate directories, errors can occur when binds are made within other binds.
+3つのメインボリュームバインディングがすべて別々のディレクトリであることを確認してください。他のバインドの中にバインドを作成するとエラーが発生する可能性があります。
 
-- `/config` - This is used to store logs and other miscellaneous files that keep CWA running
-  -  **New Users** - Use any empty folder (if you run into any issues, make sure the ownership of said folder isn't `root:root` in your main os)
-  -  **Existing/ CW Users** - Those with existing Calibre-Web setups, map this to your existing `/config` directory containing `app.db` to ensure settings and users are pulled in
-- `/cwa-book-ingest` - **ATTENTION** ⚠️ - All files within this folder will be **DELETED** after being processed. This folder should only be used to dump new books into for import and automatic conversion
-- `/calibre-library` - This should be bound to your Calibre library folder where the `metadata.db` & book(s) files reside.
-  - **New Users** - Use any empty folder (if you run into any issues, make sure the ownership of said folder isn't `root:root` in your main os)
-  - **Existing/ CW Users** - If there are multiple libraries in the mounted directory, CWA will automatically find and mount the largest one - check the logs for more details on which `metadata.db` was utilised
-- `/config/.config/calibre/plugins` - This should be bound to a directory containing a copy of your existing Calibre plugins. Configuration will be retained. (There is currently no way to configure plugins via CWA.)
-  - In order for plugins to be registered and work, you must also copy the `customize.py.json` file from the Calibre plugins' parent directory to the correct config folder above, e.g. `/path/to/config/folder/.config/calibre/customize.py.json`. See the section below if you don't know where to find this file.
-<!-- - `/books` _(Optional)_ Utilise if you have a separate collection of book files somewhere and want to be able to access within the container. For the majority of users, this is not required and mounting`/calibre-library' is sufficient -->
-- `/app/calibre-web-automated/gmail.json` _(Optional)_ - This is used to setup Calibre-Web and/or CWA with your gmail account for sending books via email. Follow the guide [here](https://github.com/janeczku/calibre-web/wiki/Setup-Mailserver#gmail) if this is something you're interested in but be warned it can be a very fiddly process, I would personally recommend a simple SMTP Server
+- `/config` - CWAを稼働させ続けるためのログやその他の様々なファイルを保存するために使用されます
+  -  **新規ユーザー** - 空のフォルダを使用してください（問題が発生した場合は、メインOSでそのフォルダの所有権が `root:root` でないことを確認してください）
+  -  **既存/CWユーザー** - 既存のCalibre-Webセットアップをお持ちの方は、設定やユーザーが引き継がれるように、`app.db` を含む既存の `/config` ディレクトリをここにマップしてください
+- `/cwa-book-ingest` - **注意** ⚠️ - このフォルダ内のすべてのファイルは処理後に **削除** されます。このフォルダは、インポートや自動変換のために新しい本をダンプするためだけに使用してください
+- `/calibre-library` - これは `metadata.db` と書籍ファイルが存在するCalibreライブラリフォルダにバインドする必要があります。
+  - **新規ユーザー** - 空のフォルダを使用してください（問題が発生した場合は、メインOSでそのフォルダの所有権が `root:root` でないことを確認してください）
+  - **既存/CWユーザー** - マウントされたディレクトリに複数のライブラリがある場合、CWAは自動的に最大のものを見つけてマウントします - どの `metadata.db` が利用されたかの詳細はログを確認してください
+- `/config/.config/calibre/plugins` - これは既存のCalibreプラグインのコピーを含むディレクトリにバインドする必要があります。設定は保持されます。（現在、CWA経由でプラグインを設定する方法はありません。）
+  - プラグインが登録され機能するためには、Calibreプラグインの親ディレクトリから `customize.py.json` ファイルを上記の正しいconfigフォルダ、例：`/path/to/config/folder/.config/calibre/customize.py.json` にコピーする必要もあります。このファイルがどこにあるかわからない場合は、以下のセクションを参照してください。
+<!-- - `/books` _(オプション)_ 別の場所に書籍ファイルのコレクションがあり、コンテナ内からアクセスできるようにしたい場合に利用します。大多数のユーザーにとっては不要であり、`/calibre-library` をマウントするだけで十分です -->
+- `/app/calibre-web-automated/gmail.json` _(オプション)_ - これは、電子メールで本を送信するためにGmailアカウントでCalibre-WebやCWAをセットアップするために使用されます。興味がある場合は [こちら](https://github.com/janeczku/calibre-web/wiki/Setup-Mailserver#gmail) のガイドに従ってください。ただし、非常に面倒なプロセスになる可能性があるため、個人的にはシンプルなSMTPサーバーをお勧めします。
 
-### Where can I find `customize.py.json`:
+### `customize.py.json` はどこにありますか:
 
-- On macOS, this file is typically found at `~/Library/Preferences/calibre/customize.py.json`.
-- On Linux, it is usually located at `~/.config/calibre/customize.py.json`.
-- On Windows, it is usually located at `%APPDATA%\calibre\customize.py.json` (typically `C:\Users\<YourUsername>\AppData\Roaming\calibre\customize.py.json`). Older installations might have it in `C:\Program Files\Calibre\customize.py.json` or `C:\Program Files\Calibre2\customize.py.json`.
+- macOSでは、通常 `~/Library/Preferences/calibre/customize.py.json` にあります。
+- Linuxでは、通常 `~/.config/calibre/customize.py.json` にあります。
+- Windowsでは、通常 `%APPDATA%\calibre\customize.py.json` (一般的に `C:\Users\<YourUsername>\AppData\Roaming\calibre\customize.py.json`) にあります。古いインストールでは `C:\Program Files\Calibre\customize.py.json` や `C:\Program Files\Calibre2\customize.py.json` にあるかもしれません。
 
-**Note:** If you can't find this file, it means you haven't configured any Calibre plugins yet. You can skip the plugins volume binding if you don't use Calibre plugins.
+**注:** このファイルが見つからない場合、まだCalibreプラグインを設定していないことを意味します。Calibreプラグインを使用しない場合は、プラグインボリュームのバインディングをスキップできます。
 
 
-And just like that, Calibre-Web Automated should be up and running! **HOWEVER** to avoid potential problems and ensure maximum functionality,we recommend carrying out these [Post-Install Tasks Here](#post-install-tasks).
+これで、Calibre-Web Automatedが稼働しているはずです！ **ただし**、潜在的な問題を回避し、機能を最大限に活用するために、これらの [インストール後のタスク](#インストール後のタスク) を実行することをお勧めします。
 
-# Users migrating from stock Calibre-Web
+# 通常のCalibre-Webからの移行ユーザー
 
-- CWA has been designed to make switching over as easy as possible. To migrate your CW instance to CWA, simply:
-  1. Stop your instance of CW if it's still running
-  2. Whatever your `/books` bind was in Calibre-Web, should be your `/calibre-library` bind for CWA
-  2. Mount the same `/config` folder in your Docker Compose that you were using for CW (or a copy of it to be extra safe)
-  3. Mount the same folder containing your Calibre Library (the Docker Compose for the Linuxserver image of Calibre Web has this as `/books` by default)
-- And then you're done! All of your users, settings ect. should be automatically carried over into your new CWA instance! Enjoy!
-- If you run into an issue where the Web UI won't load, trying using the same port as you did for CW and then reconfiguring if you want to once you've got everything set up
+- CWAは移行をできるだけ簡単にするように設計されています。CWインスタンスをCWAに移行するには、単に以下を行います:
+  1. CWインスタンスがまだ実行中の場合は停止します
+  2. Calibre-Webでの `/books` バインドが何であれ、CWAの `/calibre-library` バインドにする必要があります
+  2. Docker ComposeでCWに使用していたのと同じ `/config` フォルダ（念のためコピーを使用することをお勧めします）をマウントします
+  3. Calibreライブラリを含む同じフォルダをマウントします（LinuxserverのCalibre WebイメージのDocker Composeではデフォルトで `/books` になっています）
+- これで完了です！すべてのユーザー、設定などが自動的に新しいCWAインスタンスに引き継がれます！お楽しみください！
+- Web UIが読み込まれない問題が発生した場合は、CWと同じポートを使用してみて、セットアップが完了してから必要に応じて再構成してください
 
-# Post-Install Tasks:
+# インストール後のタスク:
 
-## _Calibre-Web Quick Start Guide_
+## _Calibre-Web クイックスタートガイド_
 
-1. Open your browser and navigate to http://localhost:8083 or http://localhost:8083/opds for the OPDS catalog
-2. Log in with the default admin credentials (_below_)
-3. Configure your Calibre-Web Automated instance via the Admin Page
-  - A guide to what all of the stock CW Settings do can be found [here](https://github.com/janeczku/calibre-web/wiki/Configuration#basic-configuration)
-  - Make sure `Enable Uploads` is enabled in `Settings -> Basic Configuration -> Feature Configuration`
-4. Configure CWA to behave as you would like it to in the CWA Settings panel
-  - Here you can turn certain features on and off, set your Target Format, which file formats should be ignored and which should be auto-converted ect.
-6. Drop a book into your ingest folder to check everything is working and enjoy!
+1. ブラウザを開き、http://localhost:8083 または OPDSカタログの場合は http://localhost:8083/opds にアクセスします
+2. デフォルトの管理者認証情報（_下記_）でログインします
+3. 管理者ページからCalibre-Web Automatedインスタンスを設定します
+  - すべての通常のCW設定の機能についてのガイドは [こちら](https://github.com/janeczku/calibre-web/wiki/Configuration#basic-configuration) にあります
+  - `設定 -> 基本設定 -> 機能設定` で `アップロードを有効にする` が有効になっていることを確認してください
+4. CWA設定パネルでCWAをお好みの動作になるように設定します
+  - ここでは、特定の機能のオン/オフ、ターゲット形式の設定、どのファイル形式を無視し、どれを自動変換するかなどを設定できます
+6. 本を取り込みフォルダにドロップして、すべてが機能していることを確認し、お楽しみください！
 
-## Default Admin Login:
+## デフォルトの管理者ログイン:
 
-> **Username:** admin\
-> **Password:** admin123
+> **ユーザー名:** admin\
+> **パスワード:** admin123
 
-# Usage 🔧
+# 使い方 🔧
 
-## Adding Books to Your Library
+## ライブラリへの本の追加
 
-- Simply move your newly downloaded or existing eBook files to the ingest folder which is `/cwa-book-ingest`
-- Anything you place in this folder will be automatically analysed, converted if necessary and then imported into your Calibre-Web library if not in a format you have told CWA to ignore in the CWA Settings Panel
-  - **⚠️ ATTENTION ⚠️**
-    - _Downloading files directly into `/cwa-book-ingest` is not supported. It can cause duplicate imports and potentially a corrupt database. It is recommended to first download the books completely, then transfer them to `/cwa-book-ingest` to avoid any issues_
-    - Be sure that the books you are transferring to `/cwa-book-ingest` are owned by your user rather than root. Otherwise, permission errors may occur and may result in incomplete importing.
-    - In the event you're expecting a book to be ingested and it hasn't been, use the "Library Refresh" button on the Upper Navbar to manually trigger the ingest process
+- 新しくダウンロードした、または既存の電子書籍ファイルを `/cwa-book-ingest` である取り込みフォルダに移動するだけです
+- このフォルダに入れたものはすべて自動的に分析され、必要に応じて変換され、CWA設定パネルで無視するように指定した形式でない限り、Calibre-Webライブラリにインポートされます
+  - **⚠️ 注意 ⚠️**
+    - _`/cwa-book-ingest` にファイルを直接ダウンロードすることはサポートされていません。重複インポートやデータベースの破損を引き起こす可能性があります。問題を避けるため、まず本を完全にダウンロードしてから、`/cwa-book-ingest` に転送することをお勧めします_
+    - `/cwa-book-ingest` に転送する本が、rootではなくユーザーによって所有されていることを確認してください。そうしないと、権限エラーが発生し、インポートが不完全になる可能性があります。
+    - 本が取り込まれるはずなのに取り込まれていない場合は、上部ナビゲーションバーの「ライブラリ更新」ボタンを使用して、取り込みプロセスを手動でトリガーしてください
 
-## KOReader Syncing (KOSync) 📖⚡
+## KOReader 同期 (KOSync) 📖⚡
 
-CWA now includes built-in KOReader syncing functionality, allowing you to sync your reading progress across devices using KOReader. This feature provides a modern, secure alternative to traditional KOReader sync servers. Navigate to `http://your-cwa-instance:8083/kosync` in your browser where you'll find download links and installation instructions for the CWA KOReader plugin.
+CWAにはKOReader同期機能が組み込まれており、KOReaderを使用してデバイス間で読書進捗を同期できます。この機能は、従来のKOReader同期サーバーに代わるモダンで安全な代替手段を提供します。ブラウザで `http://your-cwa-instance:8083/kosync` にアクセスすると、CWA KOReaderプラグインのダウンロードリンクとインストール手順が表示されます。
 
 ---
 
-## Local Development Setup
+## ローカル開発セットアップ
 
-1. **Build the image**
-   Edit and run [`build.sh`](https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/build.sh) to build a local Docker image of Calibre-Web-Automated.  See the script itself for usage details.
+1. **イメージのビルド**
+   [`build.sh`](https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/build.sh) を編集して実行し、Calibre-Web-AutomatedのローカルDockerイメージをビルドします。使用法の詳細についてはスクリプト自体を参照してください。
 
-2. **Edit [`docker-compose.yml.dev`](https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/docker-compose.yml.dev)**
-   Update at minimum:
-   - `image:` → your image tag from step 1
-   - `volumes mounts` → paths for config, ingest, library, plugins
+2. **[`docker-compose.yml.dev`](https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/docker-compose.yml.dev) の編集**
+   最低限以下を更新してください:
+   - `image:` → ステップ1のイメージタグ
+   - `volumes mounts` → config, ingest, library, plugins のパス
 
- To have the app refresh dynamically in response to code changes, see comments in the  [`docker-compose.yml.dev`](https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/docker-compose.yml.dev)** for details and examples on "live-edit" mounts.
+ コード変更に応じてアプリを動的にリフレッシュさせるには、「ライブ編集」マウントの詳細と例について [`docker-compose.yml.dev`](https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/docker-compose.yml.dev)** 内のコメントを参照してください。
 
-3. **Start the service**
+3. **サービスの開始**
 ```
 $ docker compose -f docker-compose.yml.dev up -d
 ```
 
-4. **Log in & configure**
-   - Sign in with the [default admin login](https://github.com/crocodilestick/Calibre-Web-Automated?tab=readme-ov-file#default-admin-login)
-   - Optionally follow [Post-Install Tasks](https://github.com/crocodilestick/Calibre-Web-Automated?tab=readme-ov-file#post-install-tasks)-
+4. **ログイン & 設定**
+   - [デフォルトの管理者ログイン](https://github.com/crocodilestick/Calibre-Web-Automated?tab=readme-ov-file#デフォルトの管理者ログイン) でサインインします
+   - 必要に応じて [インストール後のタスク](https://github.com/crocodilestick/Calibre-Web-Automated?tab=readme-ov-file#インストール後のタスク) に従ってください-
 
 ---
 
-# Further Development 🏗️
+# 今後の開発 🏗️
 
-- CWA is really lucky to have a very passionate and active community of people that really help shape CWA into what it is today
-- If you have any ideas or want to contribute to the project, you're more than welcome to! We accept anyone regardless of skill level of expertise!
-- If you've got a good idea or want to simply suggest improvements, simply get in touch with us on the Discord Server [here](https://discord.gg/EjgSeek94R)!
+- CWAは、CWAを今日のような形にするために本当に役立っている、非常に情熱的で活発なコミュニティを持っていることは本当に幸運です
+- プロジェクトにアイデアがある、または貢献したい場合は、大歓迎です！スキルレベルや専門知識に関係なく、どなたでも受け入れています！
+- 良いアイデアがある、または単に改善を提案したい場合は、Discordサーバー [こちら](https://discord.gg/EjgSeek94R) でご連絡ください！
