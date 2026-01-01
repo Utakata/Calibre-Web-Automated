@@ -32,7 +32,7 @@ msgstr "サーバーをシャットダウンしています。ページを閉じ
 
 #: cps/admin.py:172
 msgid "Success! Database Reconnected"
-msgstr "成功！データベースに再接続しました"
+msgstr "データベースに再接続しました"
 
 #: cps/admin.py:175
 msgid "Unknown command"
@@ -41,7 +41,7 @@ msgstr "不明なコマンド"
 #: cps/admin.py:186
 msgid ""
 "Success! Books queued for Metadata Backup, please check Tasks for result"
-msgstr "成功！本がメタデータバックアップのキューに追加されました。結果はタスクを確認してください"
+msgstr "メタデータバックアップのキューに本を追加しました。結果はタスクを確認してください"
 
 #: cps/admin.py:242 cps/editbooks.py:824 cps/editbooks.py:869
 #: cps/editbooks.py:1517 cps/updater.py:612 cps/uploader.py:97
@@ -314,7 +314,7 @@ msgstr "メールサーバー設定を編集"
 
 #: cps/admin.py:1430
 msgid "Success! Gmail Account Verified."
-msgstr "成功！Gmailアカウントが確認されました。"
+msgstr "Gmailアカウントが確認されました。"
 
 #: cps/admin.py:1450 cps/admin.py:1453 cps/admin.py:1841 cps/admin.py:2005
 #: cps/admin.py:2109 cps/admin.py:2238 cps/editbooks.py:771
@@ -323,7 +323,7 @@ msgstr "成功！Gmailアカウントが確認されました。"
 #: cps/tasks/convert.py:145 cps/web.py:1669
 #, python-format
 msgid "Oops! Database Error: %(error)s."
-msgstr "DBエラー: %(error)s"
+msgstr "データベースエラー: %(error)s"
 
 #: cps/admin.py:1460
 #, python-format
@@ -362,7 +362,7 @@ msgstr "スケジュールタスクの設定を更新しました"
 
 #: cps/admin.py:1527 cps/admin.py:1576 cps/admin.py:2234 cps/web.py:1449
 msgid "Oops! An unknown error occurred. Please try again later."
-msgstr "不明なエラーが発生しました。あとで再試行してください。"
+msgstr "不明なエラーが発生しました。後でもう一度お試しください。"
 
 #: cps/admin.py:1531
 msgid "Settings DB is not Writeable"
@@ -376,11 +376,11 @@ msgstr "ユーザー %(nick)s を編集"
 #: cps/admin.py:1573
 #, python-format
 msgid "Success! Password for user %(user)s reset"
-msgstr "成功！ユーザー %(user)s のパスワードがリセットされました"
+msgstr "ユーザー %(user)s のパスワードをリセットしました"
 
 #: cps/admin.py:1579
 msgid "Oops! Please configure the SMTP mail settings."
-msgstr "おっと！SMTPメール設定を行ってください。"
+msgstr "SMTPメール設定を行ってください。"
 
 #: cps/admin.py:1590
 msgid "Logfile viewer"
@@ -503,7 +503,7 @@ msgstr "DB設定"
 
 #: cps/admin.py:2073 cps/web.py:1418
 msgid "Oops! Please complete all fields."
-msgstr "全ての項目を入力してください"
+msgstr "すべての項目に入力してください。"
 
 #: cps/admin.py:2082
 msgid "E-mail is not from valid domain"
@@ -520,7 +520,7 @@ msgstr "ユーザー '%(user)s' を作成しました"
 
 #: cps/admin.py:2105
 msgid "Oops! An account already exists for this Email. or name."
-msgstr "このメールアドレスかニックネームで登録されたアカウントがすでに存在します。"
+msgstr "このメールアドレスまたは名前のアカウントは既に存在します。"
 
 #: cps/admin.py:2135
 #, python-format
@@ -891,7 +891,7 @@ msgstr "アップロードするファイルには拡張子が必要です"
 #: cps/web.py:1757 cps/web.py:1813
 msgid ""
 "Oops! Selected book is unavailable. File does not exist or is not accessible"
-msgstr "選択した本は利用できません。ファイルが存在しないか、アクセスできません"
+msgstr "選択された本は利用できません。ファイルが存在しないか、アクセスできません。"
 
 #: cps/editbooks.py:675 cps/editbooks.py:1500
 msgid "User has no rights to upload cover"
@@ -1224,7 +1224,7 @@ msgstr ""
 #: cps/oauth_bb.py:212 cps/remotelogin.py:149
 #, python-format
 msgid "Success! You are now logged in as: %(nickname)s"
-msgstr "%(nickname)s としてログイン中"
+msgstr "%(nickname)s としてログインしました"
 
 #: cps/oauth_bb.py:222
 #, python-format
@@ -1314,7 +1314,7 @@ msgstr "トークンが無効です"
 
 #: cps/remotelogin.py:111
 msgid "Success! Please return to your device"
-msgstr "成功です！端末に戻ってください"
+msgstr "完了しました！デバイスに戻ってください"
 
 #: cps/render_template.py:40
 msgid "Books"
@@ -1742,21 +1742,21 @@ msgstr "ファイル形式一覧"
 
 #: cps/web.py:1349 cps/web.py:1370
 msgid "Please configure the SMTP mail settings first..."
-msgstr "最初にSMTPメール設定を行ってください..."
+msgstr "先にSMTPメール設定を行ってください..."
 
 #: cps/web.py:1356
 #, python-format
 msgid "Success! Book queued for sending to %(eReadermail)s"
-msgstr "本の %(eReadermail)s への送信がキューに追加されました"
+msgstr "%(eReadermail)s への送信キューに本を追加しました"
 
 #: cps/web.py:1359 cps/web.py:1388
 #, python-format
 msgid "Oops! There was an error sending book: %(res)s"
-msgstr "%(res)s を送信中にエラーが発生しました"
+msgstr "本の送信中にエラーが発生しました: %(res)s"
 
 #: cps/web.py:1361
 msgid "Oops! Please update your profile with a valid eReader Email."
-msgstr "おっと！プロフィールを有効なeReaderメールアドレスで更新してください。"
+msgstr "プロフィールのeReader用メールアドレスを有効なものに更新してください。"
 
 #: cps/web.py:1378
 msgid "No email addresses selected"
@@ -1764,7 +1764,7 @@ msgstr "メールアドレスが選択されていません"
 
 #: cps/web.py:1386
 msgid "Success! Book queued for sending to selected addresses"
-msgstr "成功！選択されたアドレスへの送信待ち行列に本が追加されました"
+msgstr "選択されたアドレスへの送信キューに本を追加しました"
 
 #: cps/web.py:1405
 msgid "Please wait one minute to register next user"
@@ -1784,15 +1784,15 @@ msgstr "リミッターバックエンドへの接続エラー。管理者に連
 #: cps/web.py:1414 cps/web.py:1466
 msgid ""
 "Oops! Email server is not configured, please contact your administrator."
-msgstr "メールサーバーが設定されていません。管理者に連絡してください"
+msgstr "メールサーバーが設定されていません。管理者に連絡してください。"
 
 #: cps/web.py:1452
 msgid "Oops! Your Email is not allowed."
-msgstr "このメールアドレスは登録が許可されていません"
+msgstr "このメールアドレスは許可されていません。"
 
 #: cps/web.py:1455
 msgid "Success! Confirmation Email has been sent."
-msgstr "確認メールがこのメールアドレスに送信されました。"
+msgstr "確認メールを送信しました。"
 
 #: cps/web.py:1500 cps/web.py:1523
 msgid "Cannot activate LDAP authentication"
@@ -1847,11 +1847,11 @@ msgstr "%(name)s のプロフィール"
 
 #: cps/web.py:1660
 msgid "Success! Profile Updated"
-msgstr "成功！プロフィールが更新されました"
+msgstr "プロフィールを更新しました"
 
 #: cps/web.py:1664
 msgid "Oops! An account already exists for this Email."
-msgstr "このメールアドレスで登録されたアカウントがすでに存在します"
+msgstr "このメールアドレスのアカウントは既に存在します。"
 
 #: cps/web.py:1770
 msgid "Invalid book ID."
