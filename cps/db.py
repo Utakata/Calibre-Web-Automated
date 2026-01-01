@@ -528,12 +528,12 @@ class CalibreDB:
     engine = None
     config = None
     session_factory = None
-    # This is a WeakSet so that references here don't keep other CalibreDB
-    # instances alive once they reach the end of their respective scopes
+    # これは WeakSet なので、ここでの参照は他の CalibreDB インスタンスが
+    # それぞれのスコープの終わりに達した後に、それらを生き続けさせません
     instances = WeakSet()
 
     def __init__(self, expire_on_commit=True, init=False):
-        """ Initialize a new CalibreDB session
+        """ 新しい CalibreDB セッションを初期化する
         """
         self.session = None
         if init:
@@ -551,8 +551,8 @@ class CalibreDB:
         self.create_functions(self.config)
 
     def ensure_session(self, expire_on_commit=True):
-        """Ensure a valid SQLAlchemy session exists.
-        This protects against brief windows where dispose() nulled the session during a reconnect.
+        """有効な SQLAlchemy セッションが存在することを確認します。
+        これは、再接続中に dispose() がセッションを null にした場合の短いウィンドウから保護します。
         """
         try:
             if self.session is None:
@@ -560,7 +560,7 @@ class CalibreDB:
                 if self.session_factory is not None:
                     self.init_session(expire_on_commit)
                 else:
-                    # As a last resort, try to rebuild the setup if config is present
+                    # 最後の手段として、設定が存在する場合はセットアップを再構築してみてください
                     if self.config and getattr(self.config, 'config_calibre_dir', None):
                         try:
                             self.setup_db(self.config.config_calibre_dir, ub.app_DB_path)
@@ -568,7 +568,7 @@ class CalibreDB:
                         except Exception as ex:
                             log.error_or_exception(ex)
         except Exception:
-            # Never let session recovery raise in callers; they will fail later with proper logging
+            # セッション回復が呼び出し元で発生しないようにしてください。適切なログ記録で後で失敗します
             pass
 
     @classmethod
@@ -658,8 +658,8 @@ class CalibreDB:
             with check_engine.begin() as connection:
                 connection.execute(text("attach database '{}' as calibre;".format(dbpath)))
                 connection.execute(text("attach database '{}' as app_settings;".format(app_db_path)))
-                # Try enabling WAL to improve concurrency unless running on a network share
-                # Controlled by env var NETWORK_SHARE_MODE (default False)
+                # ネットワーク共有で実行されていない限り、同時実行性を向上させるためにWALを有効にしてみてください
+                # 環境変数 NETWORK_SHARE_MODE (デフォルト False) によって制御されます
                 try:
                     nsm = os.getenv('NETWORK_SHARE_MODE', 'False').lower() in ('1', 'true', 'yes', 'on')
                     if not nsm:
@@ -736,7 +736,7 @@ class CalibreDB:
         for inst in cls.instances:
             inst.init_session()
 
-        # Ensure progress syncing tables exist in metadata.db (book checksums)
+        # metadata.db に進行状況同期テーブルが存在することを確認します (書籍チェックサム)
         from .progress_syncing.models import ensure_calibre_db_tables
         ensure_calibre_db_tables(conn)
 
@@ -765,7 +765,7 @@ class CalibreDB:
                       isouter=True))
             except (KeyError, AttributeError, IndexError):
                 log.error("Custom Column No.{} does not exist in calibre database".format(read_column))
-                # Skip linking read column and return None instead of read status
+                # 既読列のリンクをスキップし、既読ステータスの代わりに None を返します
                 bd = self.session.query(Books, None, ub.ArchivedBook.is_archived)
         return (bd.filter(Books.id == book_id)
                 .join(ub.ArchivedBook, and_(Books.id == ub.ArchivedBook.book_id,
@@ -794,7 +794,7 @@ class CalibreDB:
             self.session.rollback()
             log.error("Database error: {}".format(e))
 
-    # Language and content filters for displaying in the UI
+    # UIに表示するための言語とコンテンツのフィルター
     def common_filters(self, allow_show_archived=False, return_all_languages=False):
         if not allow_show_archived:
             archived_books = (ub.session.query(ub.ArchivedBook)
@@ -879,7 +879,7 @@ class CalibreDB:
             outcome.reverse()
         return outcome[offset:offset + limit]
 
-    # Fill indexpage with all requested data from database
+    # データベースから要求されたすべてのデータをインデックスページに入力します
     def fill_indexpage(self, page, pagesize, database, db_filter, order,
                        join_archive_read=False, config_read_column=0, *join):
         self.ensure_session()
@@ -931,7 +931,7 @@ class CalibreDB:
         entries = self.order_authors(entries, True, join_archive_read)
         return entries, randm, pagination
 
-    # Orders all Authors in the list according to authors sort
+    # リスト内のすべての著者を著者ソートに従って並べ替えます
     def order_authors(self, entries, list_return=False, combined=False):
         self.ensure_session()
         for entry in entries:
@@ -1042,7 +1042,7 @@ class CalibreDB:
 
         return cc
 
-    # read search results from calibre-database and return it (function is used for feed and simple search
+    # calibreデータベースから検索結果を読み取り、それを返します（関数はフィードと単純検索に使用されます）
     def get_search_results(self, term, config, offset=None, order=None, limit=None, *join):
         self.ensure_session()
         order = order[0] if order else [Books.sort]
@@ -1062,7 +1062,7 @@ class CalibreDB:
 
         return entries, result_count, pagination
 
-    # Creates for all stored languages a translated speaking name in the array for the UI
+    # UIの配列にすべての保存された言語の翻訳された名前を作成します
     def speaking_language(self, languages=None, return_all_languages=False, with_count=False, reverse_order=False):
         self.ensure_session()
 
@@ -1099,9 +1099,9 @@ class CalibreDB:
 
     def create_functions(self, config=None):
         self.ensure_session()
-        # user defined sort function for calibre databases (Series, etc.)
+        # calibreデータベース（シリーズなど）のユーザー定義ソート関数
         def _title_sort(title):
-            # calibre sort stuff
+            # calibre ソート処理
             title_pat = re.compile(config.config_title_regex, re.IGNORECASE)
             match = title_pat.search(title)
             if match:

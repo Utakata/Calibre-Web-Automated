@@ -128,7 +128,7 @@ class Updater(threading.Thread):
     def pause(self):
         self.can_run.clear()
 
-    # should just resume the thread
+    # スレッドを再開するだけ
     def resume(self):
         self.can_run.set()
 
@@ -265,7 +265,7 @@ class Updater(threading.Thread):
         if additional_path:
             exclude.append(additional_path)
         exclude = tuple(exclude)
-        # check if we are in a package, rename cps.py to __init__.py and __main__.py
+        # パッケージ内にいるかどうかを確認し、cps.py を __init__.py および __main__.py にリネームします
         if constants.HOME_CONFIG:
             shutil.copy(os.path.join(source, 'cps.py'), os.path.join(source, '__main__.py'))
             shutil.move(os.path.join(source, 'cps.py'), os.path.join(source, '__init__.py'))
@@ -349,7 +349,7 @@ class Updater(threading.Thread):
                 if remaining_parents_cnt == 0:
                     break
 
-                # check if we are more than one update behind if so, go up the tree
+                # 複数の更新が遅れているかどうかを確認し、その場合はツリーを上に移動します
                 if parent_commit['sha'] != status['current_commit_hash']:
                     try:
                         headers = {'Accept': 'application/vnd.github.v3+json'}
@@ -367,10 +367,10 @@ class Updater(threading.Thread):
                         parent_commit = parent_data['parents'][0]
                         remaining_parents_cnt -= 1
                     except Exception:
-                        # it isn't crucial if we can't get information about the parent
+                        # 親に関する情報を取得できなくても重要ではありません
                         break
                 else:
-                    # parent is our current version
+                    # 親は現在のバージョンです
                     break
         return parents
 
@@ -537,7 +537,7 @@ class Updater(threading.Thread):
             version = status['current_commit_hash']
             current_version = status['current_commit_hash'].split('.')
 
-            # we are already on newest version, no update available
+            # すでに最新バージョンを使用しており、利用可能な更新はありません
             if 'tag_name' not in commit[0]:
                 status['message'] = _(u'Unexpected data while reading update information')
                 log.error("Unexpected data while reading update information")
@@ -567,7 +567,7 @@ class Updater(threading.Thread):
                 except ValueError:
                     current_version[2] = int(current_version[2].replace("b", "").split(' ')[0])-1
 
-                # Check if major versions are identical search for newest non-equal commit and update to this one
+                # メジャーバージョンが同一かどうかを確認し、最新の等しくないコミットを検索してこれに更新します
                 if major_version_update == current_version[0]:
                     if (minor_version_update == current_version[1] and
                             patch_version_update > current_version[2]) or \
@@ -580,8 +580,7 @@ class Updater(threading.Thread):
                     i -= 1
                     continue
                 if major_version_update > current_version[0]:
-                    # found update to last version before major update, unless current version is on last version
-                    # before major update
+                    # メジャーアップデート前の最後のバージョンへのアップデートが見つかりました（現在のバージョンがメジャーアップデート前の最後のバージョンでない限り）
                     if i == (len(commit) - 1):
                         i -= 1
                     status, parents = self._stable_updater_parse_major_version(commit,

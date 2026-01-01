@@ -4617,6 +4617,45 @@ msgstr "選択した本棚をKoboと同期"
 msgid "Show Read/Unread Section"
 msgstr "既読/未読セクションを表示"
 
+msgid "Two Factor Authentication"
+msgstr "二段階認証"
+
+msgid "Enable 2FA"
+msgstr "二段階認証を有効にする"
+
+msgid "Disable 2FA"
+msgstr "二段階認証を無効にする"
+
+msgid "Scan the QR code with your authenticator app:"
+msgstr "認証アプリでQRコードをスキャンしてください:"
+
+msgid "Secret Key:"
+msgstr "シークレットキー:"
+
+msgid "Enter Verification Code"
+msgstr "認証コードを入力してください"
+
+msgid "Verify & Enable"
+msgstr "確認して有効にする"
+
+msgid "Authentication Code"
+msgstr "認証コード"
+
+msgid "Verify"
+msgstr "確認"
+
+msgid "Invalid 2FA Code"
+msgstr "無効な二段階認証コードです"
+
+msgid "Are you sure you want to disable 2FA?"
+msgstr "本当に二段階認証を無効にしますか？"
+
+msgid "Session expired. Please try again."
+msgstr "セッションが期限切れです。もう一度お試しください。"
+
+msgid "Invalid code"
+msgstr "無効なコード"
+
 #, python-format
 #~ msgid "File %(file)s uploaded"
 #~ msgstr "ファイル %(file)s をアップロードしました"

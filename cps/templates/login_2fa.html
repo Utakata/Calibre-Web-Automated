@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="well col-sm-6 col-sm-offset-2">
+  <h2 style="margin-top: 0">{{_('Two Factor Authentication')}}</h2>
+  <form method="POST" role="form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="form-group">
+      <label for="code" style="color: var(--color-primary)">{{_('Authentication Code')}}</label>
+      <input type="text" class="form-control" id="code" name="code" placeholder="123456" autocomplete="off" autofocus required>
+    </div>
+    <button type="submit" class="btn btn-primary">{{_('Verify')}}</button>
+  </form>
+</div>
+{% endblock %}

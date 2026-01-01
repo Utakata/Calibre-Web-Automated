@@ -91,7 +91,7 @@ def admin_required(f):
 
 @admi.before_app_request
 def before_request():
-    # Safety net: if not configured but metadata.db now exists at default location, auto-set without redirect loop
+    # セーフティネット: 設定されていないが、metadata.db がデフォルトの場所に存在する場合、リダイレクトループなしで自動設定する
     if not config.db_configured:
         try:
             default_metadata = '/calibre-library/metadata.db'
@@ -103,7 +103,7 @@ def before_request():
                     config.save()
                 except Exception as e:
                     log.error('Failed to save late autoconfig: %s', e)
-                # Re-run calibre db setup so subsequent handlers see a configured DB
+                # 後続のハンドラが設定済みのDBを参照できるように、calibre dbのセットアップを再実行する
                 from . import db as _db, cli_param as _cli_param
                 _db.CalibreDB.update_config(config)
                 _db.CalibreDB.setup_db(config.config_calibre_dir, _cli_param.settings_path)
@@ -121,7 +121,7 @@ def before_request():
     g.allow_registration = config.config_public_reg
     g.allow_anonymous = config.config_anonbrowse
     g.allow_upload = config.config_uploading
-    # Use per-user theme if available; fallback to global config.config_theme for legacy/anonymous
+    # 利用可能な場合はユーザーごとのテーマを使用する; レガシー/匿名の場合はグローバルな config.config_theme にフォールバックする
     try:
         g.current_theme = getattr(current_user, 'theme', config.config_theme)
         if current_user.is_anonymous and not hasattr(current_user, 'theme'):
@@ -153,8 +153,8 @@ def before_request():
 def shutdown():
     task = request.get_json().get('parameter', -1)
     show_text = {}
-    if task in (0, 1):  # valid commandos received
-        # close all database connections
+    if task in (0, 1):  # 有効なコマンドを受信
+        # すべてのデータベース接続を閉じる
         calibre_db.dispose()
         ub.dispose()
 
@@ -162,7 +162,7 @@ def shutdown():
             show_text['text'] = _('Server restarted, please reload page.')
         else:
             show_text['text'] = _('Performing Server shutdown, please close window.')
-        # stop gevent/tornado server
+        # gevent/tornado サーバーを停止する
         web_server.stop(task == 0)
         return json.dumps(show_text)
 
@@ -187,8 +187,8 @@ def queue_metadata_backup():
     return json.dumps(show_text)
 
 
-# method is available without login and not protected by CSRF to make it easy reachable, is per default switched off
-# needed for docker applications, as changes on metadata.db from host are not visible to application
+# このメソッドはログインなしで利用可能であり、簡単にアクセスできるようにCSRFで保護されていません。デフォルトではオフになっています。
+# ホストからの metadata.db への変更がアプリケーションに表示されないため、Dockerアプリケーションに必要です
 @admi.route("/reconnect", methods=['GET'])
 def reconnect():
     if cli_param.reconnect_enable:
@@ -210,7 +210,7 @@ def update_thumbnails():
         from .tasks.thumbnail import TaskGenerateCoverThumbnails
         task_id = helper.update_thumbnail_cache()
 
-        # Check if there are any books to process
+        # 処理すべき本があるか確認する
         books_with_covers = TaskGenerateCoverThumbnails.get_books_with_covers()
         book_count = len(books_with_covers)
 
@@ -1871,7 +1871,7 @@ def _db_configuration_update_helper():
     try:
         db_change, db_valid = _db_simulate_change()
 
-        # gdrive_error drive setup
+        # gdrive_error ドライブのセットアップ
         gdrive_error = _configuration_gdrive_helper(to_save)
     except (OperationalError, InvalidRequestError) as e:
         ub.session.rollback()
@@ -1899,7 +1899,7 @@ def _db_configuration_update_helper():
         else:
             calibre_db.setup_db(to_save['config_calibre_dir'], ub.app_DB_path)
         config.store_calibre_uuid(calibre_db, db.Library_Id)
-        # if db changed -> delete shelfs, delete download books, delete read books, kobo sync...
+        # DBが変更された場合 -> 棚、ダウンロードした本、読書済みステータス、Kobo同期などを削除...
         if db_change:
             log.info("Calibre Database changed, all Calibre-Web Automated info related to old Database gets deleted")
             ub.session.query(ub.Downloads).delete()
@@ -1912,7 +1912,7 @@ def _db_configuration_update_helper():
             ub.session.query(ub.KoboSyncedBooks).delete()
             helper.delete_thumbnail_cache()
             ub.session_commit()
-            # deleted visibilities based on custom column and tags
+            # カスタム列とタグに基づく表示設定を削除
             config.config_restricted_column = 0
             config.config_denied_tags = ""
             config.config_allowed_tags = ""
@@ -2237,7 +2237,7 @@ def _handle_edit_user(to_save, content, languages, translations, kobo_support):
             log.error(ex)
             flash(str(ex), category="error")
         return redirect(url_for('admin.admin'))
-    # Theme update for admin editing user
+    # 管理者によるユーザー編集時のテーマ更新
     if 'theme' in to_save:
         try:
             theme_val = int(to_save.get('theme'))
@@ -2245,7 +2245,7 @@ def _handle_edit_user(to_save, content, languages, translations, kobo_support):
                 content.theme = theme_val
         except Exception:
             pass
-    # Proceed with remaining updates (previously skipped when 'theme' in to_save)
+    # 残りの更新を続行（以前は 'theme' が to_save にある場合にスキップされていました）
     if not ub.session.query(ub.User).filter(ub.User.role.op('&')(constants.ROLE_ADMIN) == constants.ROLE_ADMIN,
                                             ub.User.id != content.id).count() and 'admin_role' not in to_save:
         log.warning("No admin user remaining, can't remove admin role from {}".format(content.name))
@@ -2268,9 +2268,9 @@ def _handle_edit_user(to_save, content, languages, translations, kobo_support):
 
     old_state = content.kobo_only_shelves_sync
     content.kobo_only_shelves_sync = int(to_save.get("kobo_only_shelves_sync") == "on") or 0
-    # 1 -> 0: nothing has to be done
-    # 0 -> 1: all synced books have to be added to archived books, + currently synced shelfs
-    # which don't have to be synced have to be removed (added to Shelf archive)
+    # 1 -> 0: 何もしなくてよい
+    # 0 -> 1: すべての同期された本をアーカイブされた本に追加する必要があり、+ 現在同期されている棚のうち
+    # 同期する必要のない棚を削除する（棚アーカイブに追加する）
     if old_state == 0 and content.kobo_only_shelves_sync == 1:
         kobo_sync_status.update_on_sync_shelfs(content.id)
     # Auto-send and metadata fetch settings

@@ -781,8 +781,8 @@ def do_edit_book(book_id, upload_formats=None):
                                    if k.startswith('custom_column_') and v is not None}
             meaningful_changes.update(custom_column_changes)
 
-            # Create log if we have actual database changes (modify_date=True)
-            # OR if this appears to be a metadata fetch with content (non-empty meaningful_changes)
+        # 実際のデータベース変更がある場合（modify_date=True）、
+        # またはこれがコンテンツのあるメタデータフェッチであると思われる場合（non-empty meaningful_changes）にログを作成
             should_create_log = (modify_date or
                                (meaningful_changes and any(v != '' for v in meaningful_changes.values())))
 

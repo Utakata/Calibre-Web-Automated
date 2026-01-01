@@ -10,6 +10,10 @@ import mimetypes
 import chardet  # dependency of requests
 import copy
 import importlib
+import pyotp
+import qrcode
+from io import BytesIO
+from base64 import b64encode
 
 from flask import Blueprint, jsonify
 from flask import request, redirect, send_from_directory, make_response, flash, abort, url_for, Response
@@ -1664,6 +1668,12 @@ def login_post():
                 log.warning('Username missing for password reset IP-address: %s', ip_address)
         else:
             if user and check_password_hash(str(user.password), form['password']) and user.name != "Guest":
+                # Check for 2FA
+                if user.totp_secret:
+                    flask_session['pre_auth_user_id'] = user.id
+                    flask_session['pre_auth_remember'] = remember_me
+                    return redirect(url_for('web.login_2fa'))
+
                 config.config_is_initial = False
                 log.debug(u"You are now logged in as: '{}'".format(user.name))
                 return handle_login_user(user,
@@ -1779,6 +1789,78 @@ def change_profile(kobo_support, hardcover_support, local_oauth_check, oauth_sta
         log.error("Database error: %s", e)
         flash(_("Oops! Database Error: %(error)s.", error=e), category="error")
 
+
+@web.route("/me/2fa/enable", methods=["POST"])
+@user_login_required
+def enable_2fa():
+    # Generate secret
+    secret = pyotp.random_base32()
+    # Save to session temporarily
+    flask_session['totp_secret_temp'] = secret
+
+    # Generate QR code
+    totp = pyotp.TOTP(secret)
+    uri = totp.provisioning_uri(name=current_user.email, issuer_name="Calibre-Web Automated")
+
+    img = qrcode.make(uri)
+    buffered = BytesIO()
+    img.save(buffered, format="PNG")
+    img_str = b64encode(buffered.getvalue()).decode('utf-8')
+
+    return jsonify({
+        'secret': secret,
+        'qrcode': img_str
+    })
+
+@web.route("/me/2fa/confirm", methods=["POST"])
+@user_login_required
+def confirm_2fa():
+    code = request.form.get('code')
+    secret = flask_session.get('totp_secret_temp')
+
+    if not secret:
+        return jsonify({'success': False, 'message': _("Session expired. Please try again.")}), 400
+
+    totp = pyotp.TOTP(secret)
+    if totp.verify(code):
+        current_user.totp_secret = secret
+        ub.session.commit()
+        flask_session.pop('totp_secret_temp', None)
+        return jsonify({'success': True})
+    else:
+        return jsonify({'success': False, 'message': _("Invalid code")}), 400
+
+@web.route("/me/2fa/disable", methods=["POST"])
+@user_login_required
+def disable_2fa():
+    current_user.totp_secret = None
+    ub.session.commit()
+    return jsonify({'success': True})
+
+@web.route('/login/2fa', methods=['GET', 'POST'])
+def login_2fa():
+    if 'pre_auth_user_id' not in flask_session:
+        return redirect(url_for('web.login'))
+
+    if request.method == 'POST':
+        code = request.form.get('code')
+        user_id = flask_session['pre_auth_user_id']
+        user = ub.session.query(ub.User).filter(ub.User.id == user_id).first()
+
+        if user and user.totp_secret:
+            totp = pyotp.TOTP(user.totp_secret)
+            if totp.verify(code):
+                # Login success
+                flask_session.pop('pre_auth_user_id', None)
+                remember_me = flask_session.pop('pre_auth_remember', False)
+                return handle_login_user(user, remember_me, _(u"You are now logged in as: '%(nickname)s'", nickname=user.name), "success")
+            else:
+                flash(_("Invalid 2FA Code"), category="error")
+        else:
+             # Should not happen
+             return redirect(url_for('web.login'))
+
+    return render_title_template('login_2fa.html', title=_("Two Factor Authentication"), page="login")
 
 @web.route("/me", methods=["GET", "POST"])
 @user_login_required

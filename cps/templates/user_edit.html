@@ -24,6 +24,28 @@
           <input type="password" class="form-control" name="password" id="password" data-lang="{{ current_user.locale }}" data-verify="{{ config.config_password_policy }}" {% if config.config_password_policy %} data-min={{ config.config_password_min_length }} data-word={{ config.config_password_character }} data-special={{ config.config_password_special }} data-upper={{ config.config_password_upper }} data-lower={{ config.config_password_lower }} data-number={{ config.config_password_number }}{% endif %} value="" autocomplete="off">
         </div>
     {% endif %}
+    {% if profile and not content.role_anonymous() %}
+    <div class="form-group">
+        <label>{{_('Two Factor Authentication')}}</label>
+        <div>
+            {% if content.totp_secret %}
+                <button type="button" class="btn btn-danger" id="disable_2fa">{{_('Disable 2FA')}}</button>
+            {% else %}
+                <button type="button" class="btn btn-primary" id="enable_2fa">{{_('Enable 2FA')}}</button>
+            {% endif %}
+        </div>
+        <div id="2fa_setup_area" style="display:none; margin-top: 10px;">
+            <p>{{_('Scan the QR code with your authenticator app:')}}</p>
+            <img id="2fa_qrcode" src="" alt="QR Code">
+            <p>{{_('Secret Key:')}} <code id="2fa_secret"></code></p>
+            <div class="form-group">
+                <label for="2fa_code">{{_('Enter Verification Code')}}</label>
+                <input type="text" class="form-control" id="2fa_code" autocomplete="off">
+            </div>
+            <button type="button" class="btn btn-success" id="confirm_2fa">{{_('Verify & Enable')}}</button>
+        </div>
+    </div>
+    {% endif %}
     <div class="form-group">
       <label for="kindle_mail">{{_('Send to eReader Email Address. Use comma to separate emails for multiple eReaders')}}</label>
       <input type="email" class="form-control" name="kindle_mail" id="kindle_mail" value="{{ content.kindle_mail if content.kindle_mail != None }}">
@@ -206,4 +228,31 @@
 <script src="{{ url_for('static', filename='js/libs/pwstrength/pwstrength-bootstrap.js') }}"></script>
 <script src="{{ url_for('static', filename='js/password.js') }}"></script>
 <script src="{{ url_for('static', filename='js/table.js') }}"></script>
+<script>
+    $('#enable_2fa').click(function() {
+        $.post("{{ url_for('web.enable_2fa') }}", function(data) {
+            $('#2fa_qrcode').attr('src', 'data:image/png;base64,' + data.qrcode);
+            $('#2fa_secret').text(data.secret);
+            $('#2fa_setup_area').show();
+            $('#enable_2fa').hide();
+        });
+    });
+
+    $('#confirm_2fa').click(function() {
+        var code = $('#2fa_code').val();
+        $.post("{{ url_for('web.confirm_2fa') }}", {code: code}, function(data) {
+            location.reload();
+        }).fail(function(xhr) {
+            alert(xhr.responseJSON.message);
+        });
+    });
+
+    $('#disable_2fa').click(function() {
+        if(confirm("{{_('Are you sure you want to disable 2FA?')}}")) {
+            $.post("{{ url_for('web.disable_2fa') }}", function(data) {
+                location.reload();
+            });
+        }
+    });
+</script>
 {% endblock %}
